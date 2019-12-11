@@ -14,10 +14,12 @@ public class EnemyBasic : MonoBehaviour
     public float DistanceForMaxSpeed;
     public LayerMask visibles = ~0;
     public Transform debugTarget;
+    
 
 
     public bool IsInSight(Transform target)
     {
+
         var positionDiference = target.position - transform.position;
         var distance = positionDiference.magnitude;
         if (distance > range)
