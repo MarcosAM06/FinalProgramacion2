@@ -12,8 +12,6 @@ public class ChaseState<T> : State<T>
     public float DistanceForMaxSpeed;
 
 
-    private int currentIndex;
-
     public ChaseState(Transform transform, Transform debugTarget, float SpeedChasing, float DistanceForMaxSpeed, EnemyBasic enemyBasic)
     {
         this.transform = transform;
