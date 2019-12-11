@@ -4,5 +4,10 @@ using UnityEngine;
 
 public class IddleState<T> : State<T>
 {
-  
+
+    public override void Enter()
+    {
+        Debug.Log("Enemigo iddle");
+    }
+
 }

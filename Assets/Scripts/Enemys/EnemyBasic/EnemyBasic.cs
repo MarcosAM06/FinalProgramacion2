@@ -10,6 +10,8 @@ public class EnemyBasic : MonoBehaviour
     public float angle = 90;
     public bool onSigth = true;
     public bool onCollision;
+    public float SpeedChasing;
+    public float DistanceForMaxSpeed;
     public LayerMask visibles = ~0;
     public Transform debugTarget;
 
@@ -70,7 +72,7 @@ public class EnemyBasic : MonoBehaviour
         Gizmos.DrawLine(position, position + Quaternion.Euler(0, -angle / 2, 0) * transform.forward * range);
 
         if (debugTarget)
-            Gizmos.DrawLine(position, debugTarget.position);
+        Gizmos.DrawLine(position, debugTarget.position);
     }
 
 
@@ -78,12 +80,13 @@ public class EnemyBasic : MonoBehaviour
     {
 
         var Iddle = new IddleState<Feed>();
-        var chase = new ChaseState<Feed>();
+        var chase = new ChaseState<Feed>(this.transform, debugTarget, SpeedChasing, DistanceForMaxSpeed, this);
         var atack = new AtackState<Feed>();
         var GetHit = new TakeDamageState<Feed>();
         var Die = new DieState<Feed>();
 
         Iddle.AddTransition(Feed.IsInSigth, chase);
+        chase.AddTransition(Feed.IsNotInSigth, Iddle);
 
         chase.AddTransition(Feed.IsNear, atack);
         atack.AddTransition(Feed.IsNotNear, chase);
@@ -96,25 +99,25 @@ public class EnemyBasic : MonoBehaviour
         GetHit.AddTransition(Feed.IsDead, Die);
        
 
-
-
-
-
-
         stateMachine = new FSM<Feed>(Iddle);
 
     }
-
-    
+   
     void Update()
     {
         stateMachine.Update();
+        onSigth = IsInSight(debugTarget);
+        if (onSigth == true)
+        {
+            stateMachine.Feed(Feed.IsInSigth);
+        }
 
     }
 
     public enum Feed
     {
         IsInSigth,
+        IsNotInSigth,
         IsNear,
         IsNotNear,
         TakingDamage,
