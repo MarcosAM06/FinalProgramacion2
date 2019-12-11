@@ -59,6 +59,7 @@ public class Player : MonoBehaviour, IFighter<HitData,HitResult>
         Weapons = new Dictionary<WeaponType, Weapon>();
         foreach (var weaponComp in AviableWeapons)
             Weapons.Add(weaponComp.WeaponType, weaponComp);
+        CurrentWeapon = Weapons[0];
     }
 
     // Start is called before the first frame update
