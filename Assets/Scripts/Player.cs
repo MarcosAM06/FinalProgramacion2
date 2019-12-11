@@ -20,6 +20,10 @@ public class Player : MonoBehaviour, IFighter<HitData,HitResult>
     [Header("Stats")]
     [SerializeField] int _health = 100;
     [SerializeField] int _maxHealth = 100;
+
+    //mi codigo:V
+    [SerializeField]Animator PjAnim;
+
     public int Health
     {
         get => _health;
@@ -65,7 +69,7 @@ public class Player : MonoBehaviour, IFighter<HitData,HitResult>
     // Start is called before the first frame update
     void Start()
     {
-        
+       
     }
 
     private void OnDrawGizmosSelected()
