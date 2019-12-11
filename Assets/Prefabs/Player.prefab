@@ -1,5 +1,35 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
+--- !u!1 &1632814099701987902
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1374325994902428557}
+  m_Layer: 0
+  m_Name: BulletSpawnPoint
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1374325994902428557
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1632814099701987902}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 1.431, z: 0.561}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 4029087801106733899}
+  m_RootOrder: 1
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &4948618986600780686
 GameObject:
   m_ObjectHideFlags: 0
@@ -10,6 +40,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4029087801106733899}
   - component: {fileID: 498430566117723254}
+  - component: {fileID: 4830733020913058941}
   - component: {fileID: 4891710650108442872}
   m_Layer: 0
   m_Name: Player
@@ -30,6 +61,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 3043861391570558188}
+  - {fileID: 1374325994902428557}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -47,6 +79,22 @@ CapsuleCollider:
   m_Height: 1.8302519
   m_Direction: 1
   m_Center: {x: 0, y: 0.9205569, z: 0}
+--- !u!54 &4830733020913058941
+Rigidbody:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4948618986600780686}
+  serializedVersion: 2
+  m_Mass: 1
+  m_Drag: 0
+  m_AngularDrag: 0.05
+  m_UseGravity: 1
+  m_IsKinematic: 0
+  m_Interpolate: 0
+  m_Constraints: 112
+  m_CollisionDetection: 1
 --- !u!114 &4891710650108442872
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -59,6 +107,23 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4606368fa6cb57c418f3b0c8f7e8c493, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _joystick: {fileID: 0}
+  _worldForward: {fileID: 0}
+  _bulletSpawnPoint: {fileID: 1374325994902428557}
+  _bulletPrefab: {fileID: 2822019463663630897, guid: 640c1d237b63f6145bf13cb3418b9b69,
+    type: 3}
+  _currentActivable: {fileID: 0}
+  _targeteables:
+    serializedVersion: 2
+    m_Bits: 134217728
+  _targetDetectionRange: 10
+  _health: 100
+  _maxHealth: 100
+  _movementSpeed: 5
+  _groundLayer:
+    serializedVersion: 2
+    m_Bits: 268435456
+  _upOffset: 1
 --- !u!1001 &3043861391570159592
 PrefabInstance:
   m_ObjectHideFlags: 0
