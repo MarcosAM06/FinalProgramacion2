@@ -1,5 +1,4 @@
-﻿using System.Collections;
-using System.Collections.Generic;
+﻿using System;
 using UnityEngine;
 
 public enum WeaponType
@@ -11,6 +10,8 @@ public enum WeaponType
 
 public class Weapon : MonoBehaviour
 {
+    public event Action OnShoot = delegate { };
+
     public WeaponType WeaponType = WeaponType.Pistol;
     [SerializeField] GameObject _bulletPrefab = null;
     [SerializeField] Transform _bulletSpawnPoint = null;
@@ -50,6 +51,8 @@ public class Weapon : MonoBehaviour
 
         if (_magazine > 0)
         {
+            OnShoot(); //Activo la animación del disparo.
+
             Bullet bulletInstace = Instantiate(_bulletPrefab, _bulletSpawnPoint.position, Quaternion.LookRotation(_bulletSpawnPoint.forward)).GetComponent<Bullet>();
             bulletInstace.SetOwner(_owner);
         }

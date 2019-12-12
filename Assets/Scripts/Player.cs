@@ -65,8 +65,11 @@ public class Player : MonoBehaviour, IFighter<HitData,HitResult>
         var AviableWeapons = GetComponentsInChildren<Weapon>();
         Weapons = new Dictionary<WeaponType, Weapon>();
         foreach (var weaponComp in AviableWeapons)
+        {
+            weaponComp.SetOwner(this);
+            weaponComp.OnShoot += () => _anim.SetBool("IsFiring", true);
             Weapons.Add(weaponComp.WeaponType, weaponComp);
-
+        }
         SetCurrentWeapon(WeaponType.Pistol);
     }
 
@@ -176,18 +179,12 @@ public class Player : MonoBehaviour, IFighter<HitData,HitResult>
     public void Shoot()
     {
         if (CurrentWeapon != null)
-        {
-            _anim.SetBool("IsFiring", true);
-            //CurrentWeapon.Shoot();
-        }
+            CurrentWeapon.Shoot();
     }
     public void StopShoot()
     {
         if (CurrentWeapon != null)
-        {
             _anim.SetBool("IsFiring", false);
-            //CurrentWeapon.Shoot();
-        }
     }
 
     //================================================ BUFFS ==============================================================================
