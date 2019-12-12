@@ -8,7 +8,7 @@ public class PlayerHUD : MonoBehaviour
     [SerializeField] Button _shootButton = null;
     [SerializeField] Button _InteractButton = null;
 
-    public void SetHealthDisplay(int Health, string preMessage = "Health")
+    public void SetHealthDisplay(int Health, string preMessage = "HEALTH")
     {
         this.Health.text = string.Format("{0}: {1}", preMessage, Health);
     }
