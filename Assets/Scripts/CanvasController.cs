@@ -21,6 +21,17 @@ public class CanvasController : MonoBehaviour {
     {
        
     }
+    //PANTALL DE MENU
+    public void StartGame()
+    {
+        Game.LoadScene(sceneIndex.Lvl1);
+    }
+    public void Credits()
+    {
+        Game.LoadScene(sceneIndex.Credits);
+    }
+
+    //MENU DE PAUSA
     public void Continue()
     {
         PauseMenu.SetActive(false);
@@ -36,7 +47,6 @@ public class CanvasController : MonoBehaviour {
     {
         Application.Quit();
     }
-
     public void ActivatePause()
     {
         Time.timeScale = 0;
