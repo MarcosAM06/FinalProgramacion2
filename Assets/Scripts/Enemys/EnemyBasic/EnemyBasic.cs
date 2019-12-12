@@ -23,8 +23,8 @@ public class EnemyBasic : MonoBehaviour
         enemyBasicAnim = GameObject.FindWithTag("EnemyBasic").GetComponent<Animator>();
 
         var Iddle = new IddleState<Feed>();
-        var chase = new ChaseState<Feed>(this.transform, debugTarget, SpeedChasing, DistanceForMaxSpeed, this);
-        var atack = new AtackState<Feed>(enemyBasicAnim,this);
+        var chase = new ChaseState<Feed>(this.transform, debugTarget, SpeedChasing, DistanceForMaxSpeed, this, enemyBasicAnim);
+        var atack = new AtackState<Feed>(this, enemyBasicAnim);
         var GetHit = new TakeDamageState<Feed>();
         var Die = new DieState<Feed>();
 
@@ -63,26 +63,21 @@ public class EnemyBasic : MonoBehaviour
         
         var positionDiference = target.position - transform.position;
         var distance = positionDiference.magnitude;
-        if (distance > range)
-        {
-            return false;
-        }
+       
         var angleToTarget = Vector3.Angle(transform.forward, positionDiference);
-        if (angleToTarget > angle / 2)
-        {
-            return false;
-        }
+      
 
-        RaycastHit hitInfo;
-
-        if (Physics.Raycast(transform.position, positionDiference, out hitInfo, range, visibles))
+        if (distance < range && angleToTarget < (angle / 2))
         {
-            if (hitInfo.transform != target)
-            {
-                return false;
-            }
+            RaycastHit hitInfo;
+
+            if (Physics.Raycast(transform.position + Vector3.up, positionDiference.normalized, out hitInfo, range, visibles))
+            return hitInfo.transform == target;
+
         }
-        return true;
+        
+
+        return false;
     }
 
     public void OnCollisionEnter(Collision c)

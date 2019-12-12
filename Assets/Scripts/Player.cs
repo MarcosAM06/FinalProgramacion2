@@ -69,7 +69,7 @@ public class Player : MonoBehaviour, IFighter<HitData,HitResult>
     // Start is called before the first frame update
     void Start()
     {
-       
+        PjAnim = GetComponentInChildren<Animator>();
     }
 
     private void OnDrawGizmosSelected()
@@ -117,7 +117,9 @@ public class Player : MonoBehaviour, IFighter<HitData,HitResult>
 
     public void MovePlayer(float HAxis, float VAxis)
     {
+
         //Dirección de la cámara.
+        PjAnim.SetBool("IsMoving", true);
         _axisDirection = _worldForward.forward * VAxis + _worldForward.right * HAxis;
         _movementDirection = _axisDirection;
 
@@ -133,6 +135,7 @@ public class Player : MonoBehaviour, IFighter<HitData,HitResult>
 
     public void StopPlayerMovement()
     {
+        PjAnim.SetBool("IsMoving", false);
         _rb.velocity = Vector3.Lerp(_rb.velocity, Vector3.zero, 0.1f);
     }
 

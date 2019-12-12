@@ -7,11 +7,21 @@ public class AtackState<T> : State<T>
     public EnemyBasic Enemy;
     public Animator Enemybasic;
 
-    public AtackState(Animator enemyBasicAnim, EnemyBasic enemy)
+
+    public AtackState( EnemyBasic enemy, Animator enemyBasicAnim)
     {
         this.Enemybasic = enemyBasicAnim;
         Enemy = enemy;
     }
+
+
+    public override void Enter()
+    {
+        Debug.Log("Enemigo Atacando");
+
+    }
+
+
 
     public override void Update()
     {
@@ -20,7 +30,14 @@ public class AtackState<T> : State<T>
 
         if (Enemy.onCollision == false)
         {
+            Enemybasic.SetBool("IsWalking", true);
+            Enemybasic.SetBool("IsAtacking", false);
             Enemy.stateMachine.Feed(EnemyBasic.Feed.IsNotNear);
+
+        }
+        else
+        {
+            Enemybasic.SetBool("IsAtacking", true);
         }
 
     }

@@ -25,25 +25,5 @@ public class FSM<T>
         }
     }
 
-    public void Feed1(T input)
-    {
-        var next = current.GetTransition(input);
-        if (next != null)
-        {
-            current.Exit();
-            current = next;
-            current.Enter();
-        }
-    }
 
-    public void Feed2(T input)
-    {
-        var next = current.GetTransition(input);
-        if (next != null)
-        {
-            current.Exit();
-            current = next;
-            current.Enter();
-        }
-    }
 }
