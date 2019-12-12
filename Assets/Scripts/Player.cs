@@ -151,7 +151,6 @@ public class Player : MonoBehaviour, IFighter<HitData,HitResult>
 
     public void MovePlayer(float HAxis, float VAxis)
     {
-
         //Dirección de la cámara.
         _anim.SetBool("IsMoving", true);
         _axisDirection = _worldForward.forward * VAxis + _worldForward.right * HAxis;
@@ -176,7 +175,19 @@ public class Player : MonoBehaviour, IFighter<HitData,HitResult>
     //Hoockeamos esto x UI.
     public void Shoot()
     {
-        
+        if (CurrentWeapon != null)
+        {
+            _anim.SetBool("IsFiring", true);
+            //CurrentWeapon.Shoot();
+        }
+    }
+    public void StopShoot()
+    {
+        if (CurrentWeapon != null)
+        {
+            _anim.SetBool("IsFiring", false);
+            //CurrentWeapon.Shoot();
+        }
     }
 
     //================================================ BUFFS ==============================================================================
