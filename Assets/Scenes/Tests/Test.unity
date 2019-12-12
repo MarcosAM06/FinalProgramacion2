@@ -958,8 +958,8 @@ MonoBehaviour:
   life: 100
   onSigth: 0
   onCollision: 0
-  SpeedChasing: 3
-  DistanceForMaxSpeed: 2
+  SpeedChasing: 2
+  DistanceForMaxSpeed: 1
   visibles:
     serializedVersion: 2
     m_Bits: 512
