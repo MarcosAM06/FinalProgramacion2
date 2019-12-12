@@ -21,7 +21,7 @@ public class CanvasController : MonoBehaviour {
     {
        
     }
-    //PANTALL DE MENU
+    //PANTALLA DE MENU
     public void StartGame()
     {
         Game.LoadScene(sceneIndex.Lvl1);
