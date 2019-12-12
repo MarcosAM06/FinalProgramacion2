@@ -28,10 +28,9 @@ Transform:
   m_LocalRotation: {x: -0.5, y: 0.5, z: 0.5, w: 0.5}
   m_LocalPosition: {x: 0, y: 0.073, z: 0.212}
   m_LocalScale: {x: 10, y: 10, z: 10}
-  m_Children:
-  - {fileID: 4722704484535329802}
+  m_Children: []
   m_Father: {fileID: 4722704484383011775}
-  m_RootOrder: 0
+  m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: -90, y: 0, z: 90}
 --- !u!33 &3640251899983010042
 MeshFilter:
@@ -106,6 +105,7 @@ Transform:
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
+  - {fileID: 4722704484535329802}
   - {fileID: 3640251899981715674}
   m_Father: {fileID: 0}
   m_RootOrder: 0
@@ -125,14 +125,14 @@ MonoBehaviour:
   WeaponType: 1
   _bulletPrefab: {fileID: 2822019463663630897, guid: 640c1d237b63f6145bf13cb3418b9b69,
     type: 3}
-  _bulletSpawnPoint: {fileID: 0}
-  _magazine: 10
-  _backPack: 10
-  _damage: 10
-  _ammoCapacity: 10
-  _reloadSpeed: 0.2
-  _fireRate: 1
-  maxReloadTime: 3
+  _bulletSpawnPoint: {fileID: 4722704484535329802}
+  _magazine: 20
+  _backPack: 20
+  _damage: 15
+  _ammoCapacity: 20
+  _reloadSpeed: 1
+  _fireRate: 0.3
+  maxReloadTime: 2
   infiniteBullets: 0
   isReloading: 0
   isShooting: 0
@@ -159,10 +159,10 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 4722704484535329803}
-  m_LocalRotation: {x: 0.5, y: -0.5, z: -0.5, w: 0.5}
-  m_LocalPosition: {x: -0.05772, y: 0, z: -0.0016600013}
-  m_LocalScale: {x: 0.1, y: 0.1, z: 0.1}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 0.056399986, z: 0.7892}
+  m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
-  m_Father: {fileID: 3640251899981715674}
+  m_Father: {fileID: 4722704484383011775}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
