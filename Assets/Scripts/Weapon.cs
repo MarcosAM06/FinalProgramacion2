@@ -27,7 +27,8 @@ public class Weapon : MonoBehaviour
     [SerializeField] bool infiniteBullets = false;
 
     IFighter<HitData, HitResult> _owner;
-    bool reloading = false;
+    public bool isReloading = false;
+    public bool isShooting = false;
     float timeToShoot = 0;
 
     float ReloadTime { get => _reloadSpeed * maxReloadTime; }
@@ -45,7 +46,7 @@ public class Weapon : MonoBehaviour
 
     public void Shoot()
     {
-        if (reloading) return;
+        if (isReloading) return;
 
         if (_magazine > 0)
         {

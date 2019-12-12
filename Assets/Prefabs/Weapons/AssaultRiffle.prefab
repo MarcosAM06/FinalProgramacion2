@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 3640251899983010042}
   - component: {fileID: 3640251899984009786}
   m_Layer: 0
-  m_Name: Rifle
+  m_Name: Rifle-Mesh
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -25,13 +25,14 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 3640251899982005498}
-  m_LocalRotation: {x: -0.5000008, y: 0.49999925, z: 0.49999928, w: 0.5000007}
-  m_LocalPosition: {x: 0.09, y: 0.04, z: 0.033}
-  m_LocalScale: {x: 8.263038, y: 35.27671, z: 53.649483}
-  m_Children: []
+  m_LocalRotation: {x: -0.5, y: 0.5, z: 0.5, w: 0.5}
+  m_LocalPosition: {x: 0, y: 0.073, z: 0.212}
+  m_LocalScale: {x: 10, y: 10, z: 10}
+  m_Children:
+  - {fileID: 4722704484535329802}
   m_Father: {fileID: 4722704484383011775}
-  m_RootOrder: 1
-  m_LocalEulerAnglesHint: {x: -90.00001, y: 0, z: 90.00001}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: -90, y: 0, z: 90}
 --- !u!33 &3640251899983010042
 MeshFilter:
   m_ObjectHideFlags: 0
@@ -101,15 +102,14 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 4722704484383011772}
-  m_LocalRotation: {x: 0.6378303, y: 0.38134676, z: 0.44981197, w: 0.4953951}
-  m_LocalPosition: {x: 0.2267673, y: -0.12533352, z: 0.042841002}
-  m_LocalScale: {x: 0.22303669, y: 0.14665566, z: 0.9521924}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
-  - {fileID: 4722704484535329802}
   - {fileID: 3640251899981715674}
   m_Father: {fileID: 0}
   m_RootOrder: 0
-  m_LocalEulerAnglesHint: {x: 16.791, y: 96.267006, z: 103.18201}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &4722704484383011774
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -123,7 +123,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   WeaponType: 1
-  _bulletPrefab: {fileID: 0}
+  _bulletPrefab: {fileID: 2822019463663630897, guid: 640c1d237b63f6145bf13cb3418b9b69,
+    type: 3}
   _bulletSpawnPoint: {fileID: 0}
   _magazine: 10
   _backPack: 10
@@ -133,6 +134,8 @@ MonoBehaviour:
   _fireRate: 1
   maxReloadTime: 3
   infiniteBullets: 0
+  isReloading: 0
+  isShooting: 0
 --- !u!1 &4722704484535329803
 GameObject:
   m_ObjectHideFlags: 0
@@ -156,10 +159,10 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 4722704484535329803}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0.486}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalRotation: {x: 0.5, y: -0.5, z: -0.5, w: 0.5}
+  m_LocalPosition: {x: -0.05772, y: 0, z: -0.0016600013}
+  m_LocalScale: {x: 0.1, y: 0.1, z: 0.1}
   m_Children: []
-  m_Father: {fileID: 4722704484383011775}
+  m_Father: {fileID: 3640251899981715674}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
