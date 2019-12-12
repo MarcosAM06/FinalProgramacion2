@@ -18,6 +18,10 @@ public class CanvasController : MonoBehaviour {
         Instance = this;
         FindAllGAmeObjInCanvas();
     }
+    void Update()
+    {
+       
+    }
 
     void FindAllGAmeObjInCanvas()
     {
@@ -52,5 +56,11 @@ public class CanvasController : MonoBehaviour {
     {
         SceneManager.LoadScene("Menu");
     }
+
+    public void X()
+    {
+        Application.Quit();
+    }
+
 
 }

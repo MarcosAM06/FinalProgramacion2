@@ -22,13 +22,11 @@ public class Game : MonoBehaviour
 
     private void Start()
     {
-        CC = GameObject.Find("Canvas").GetComponent<CanvasController>();
+        CC = GameObject.Find("========= Canvas ==========").GetComponent<CanvasController>();
     }
 
     void Update()
     {
-        //Acessos rapidos para los niveles
-
         CheckButons();
     }
 
@@ -46,30 +44,13 @@ public class Game : MonoBehaviour
         Application.Quit();
     }
 
-    void CheckButons()
+    public void CheckButons()
     {
-
-
-        //if (Input.GetKey(KeyCode.Alpha1))
-        //{
-        //    SceneManager.LoadScene("Level1");
-        //}
-
-        //if (Input.GetKey(KeyCode.Alpha2))
-        //{
-        //    SceneManager.LoadScene("Level2");
-        //}
-
-        //if (Input.GetKey(KeyCode.Alpha3))
-        //{
-        //    SceneManager.LoadScene("Level3");
-
-        //}
-
-
-        if (Input.GetKeyDown(KeyCode.P))
-        {
+        
             CC.ActivateOneCanvas("PauseMenu");
-        }
+        
     }
+
+
+
 }
