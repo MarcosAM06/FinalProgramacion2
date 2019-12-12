@@ -29,13 +29,7 @@ public static class Game
     {
         Application.Quit();
     }
-
-    public void CheckButons()
-    {
-        
-            CC.ActivateOneCanvas("PauseMenu");
-        
-    }
+    
 
 
 
