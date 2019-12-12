@@ -1,5 +1,7 @@
 ﻿using UnityEngine;
+
 using UnityEngine.SceneManagement;
+
 
 public enum sceneIndex : uint
 {
@@ -27,4 +29,8 @@ public static class Game
     {
         Application.Quit();
     }
+    
+
+
+
 }
