@@ -21,8 +21,8 @@ public class Player : MonoBehaviour, IFighter<HitData,HitResult>
     [SerializeField] int _health = 100;
     [SerializeField] int _maxHealth = 100;
 
-    //mi codigo:V
-    [SerializeField]Animator PjAnim;
+    [SerializeField] RuntimeAnimatorController _pistolAnimations = null;
+    [SerializeField] RuntimeAnimatorController _rifleAnimations = null;
 
     public int Health
     {
@@ -45,6 +45,8 @@ public class Player : MonoBehaviour, IFighter<HitData,HitResult>
 
     PlayerHUD _hud = null;
     Rigidbody _rb = null;
+    Animator _anim = null;
+
     Vector3 _axisDirection = Vector3.zero;
     Vector3 _movementDirection = Vector3.zero;
     Vector3 _raycastOrigin = Vector3.zero;
@@ -58,18 +60,14 @@ public class Player : MonoBehaviour, IFighter<HitData,HitResult>
         _hud.SwitchToShootButton();
         Health = _maxHealth;
         _rb = GetComponent<Rigidbody>();
+        _anim = GetComponentInChildren<Animator>();
 
         var AviableWeapons = GetComponentsInChildren<Weapon>();
         Weapons = new Dictionary<WeaponType, Weapon>();
         foreach (var weaponComp in AviableWeapons)
             Weapons.Add(weaponComp.WeaponType, weaponComp);
-        CurrentWeapon = Weapons[0];
-    }
 
-    // Start is called before the first frame update
-    void Start()
-    {
-        PjAnim = GetComponentInChildren<Animator>();
+        SetCurrentWeapon(WeaponType.Pistol);
     }
 
     private void OnDrawGizmosSelected()
@@ -92,6 +90,42 @@ public class Player : MonoBehaviour, IFighter<HitData,HitResult>
         else StopPlayerMovement();
         RotatePlayer();
         GetCloserTarget();
+
+        //Test
+        if (Input.GetKeyDown(KeyCode.Alpha1))
+        {
+            SetCurrentWeapon(WeaponType.AssaultRifle);
+        }
+        if (Input.GetKeyDown(KeyCode.Alpha2))
+        {
+            SetCurrentWeapon(WeaponType.Pistol);
+        }
+    }
+
+    public void SetCurrentWeapon(WeaponType type)
+    {
+        if (Weapons.ContainsKey(type))
+        {
+            CurrentWeapon = Weapons[type];
+
+            switch (type)
+            {
+                case WeaponType.Pistol:
+                    CurrentWeapon.gameObject.SetActive(true);
+                    Weapons[WeaponType.AssaultRifle].gameObject.SetActive(false);
+                    _anim.runtimeAnimatorController = _pistolAnimations;
+                    break;
+                case WeaponType.AssaultRifle:
+                    CurrentWeapon.gameObject.SetActive(true);
+                    Weapons[WeaponType.Pistol].gameObject.SetActive(false);
+                    _anim.runtimeAnimatorController = _rifleAnimations;
+                    break;
+                case WeaponType.ShotGun:
+                    break;
+                default:
+                    break;
+            }
+        }
     }
 
     public void RotatePlayer()
@@ -119,7 +153,7 @@ public class Player : MonoBehaviour, IFighter<HitData,HitResult>
     {
 
         //Dirección de la cámara.
-        PjAnim.SetBool("IsMoving", true);
+        _anim.SetBool("IsMoving", true);
         _axisDirection = _worldForward.forward * VAxis + _worldForward.right * HAxis;
         _movementDirection = _axisDirection;
 
@@ -135,7 +169,7 @@ public class Player : MonoBehaviour, IFighter<HitData,HitResult>
 
     public void StopPlayerMovement()
     {
-        PjAnim.SetBool("IsMoving", false);
+        _anim.SetBool("IsMoving", false);
         _rb.velocity = Vector3.Lerp(_rb.velocity, Vector3.zero, 0.1f);
     }
 

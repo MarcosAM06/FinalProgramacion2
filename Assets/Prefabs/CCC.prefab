@@ -1304,6 +1304,16 @@ PrefabInstance:
       propertyPath: PjAnim
       value: 
       objectReference: {fileID: 4292110931421730274}
+    - target: {fileID: 4891710650108442872, guid: e9563addd82708040a72e0220e155e32,
+        type: 3}
+      propertyPath: _pistolAnimations
+      value: 
+      objectReference: {fileID: 9100000, guid: 8fe62da3c4086e24ca1ccea9a43dd5af, type: 2}
+    - target: {fileID: 4891710650108442872, guid: e9563addd82708040a72e0220e155e32,
+        type: 3}
+      propertyPath: _rifleAnimations
+      value: 
+      objectReference: {fileID: 9100000, guid: b897faf123c92ef41862105d31de4a0c, type: 2}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: e9563addd82708040a72e0220e155e32, type: 3}
 --- !u!4 &4292110931411892810 stripped
@@ -1465,11 +1475,6 @@ PrefabInstance:
       propertyPath: m_Pivot.y
       value: 0.5
       objectReference: {fileID: 0}
-    - target: {fileID: 2929252283123773951, guid: aaa2c939c0359ac4dbce3f49e8b90252,
-        type: 3}
-      propertyPath: deadZone
-      value: 0.1
-      objectReference: {fileID: 0}
     - target: {fileID: 2929252285020697096, guid: aaa2c939c0359ac4dbce3f49e8b90252,
         type: 3}
       propertyPath: m_AnchoredPosition.x
@@ -1489,6 +1494,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_SizeDelta.y
       value: 74.72
+      objectReference: {fileID: 0}
+    - target: {fileID: 2929252283123773951, guid: aaa2c939c0359ac4dbce3f49e8b90252,
+        type: 3}
+      propertyPath: deadZone
+      value: 0.1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: aaa2c939c0359ac4dbce3f49e8b90252, type: 3}
