@@ -39,12 +39,12 @@ public class CanvasController : MonoBehaviour {
     //MENU DE PAUSA
     public void Continue()
     {
+        Time.timeScale = 1;
         PauseMenu.SetActive(false);
         GameOptions.SetActive(true);
         FixedJoystick.SetActive(true);
         ShootButton.SetActive(true);
         InteractButton.SetActive(true);
-        Time.timeScale = 1;
     }
 
     public void GoToMenu()
