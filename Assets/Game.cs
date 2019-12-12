@@ -13,17 +13,17 @@ public enum sceneIndex : uint
     Defeat
 }
 
-public class Game : MonoBehaviour
+public static class Game
 {
-    public void LoadScene(int sceneIndex)
+    public static void LoadScene(int sceneIndex)
     {
         SceneManager.LoadScene(sceneIndex);
     }
-    public void LoadScene(sceneIndex sceneIndex)
+    public static void LoadScene(sceneIndex sceneIndex)
     {
         SceneManager.LoadScene((int)sceneIndex);
     }
-    public void CloseGame()
+    public static void CloseGame()
     {
         Application.Quit();
     }
