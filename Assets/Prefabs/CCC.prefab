@@ -4221,6 +4221,7 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 134217728
   _targetDetectionRange: 10
+  FindedTarget: {fileID: 0}
   _health: 100
   _maxHealth: 100
   _pistolAnimations: {fileID: 9100000, guid: 8fe62da3c4086e24ca1ccea9a43dd5af, type: 2}
@@ -4421,37 +4422,37 @@ PrefabInstance:
     - target: {fileID: 4722704484383011775, guid: 5a4f4819ba02c084d9e6783543e2270a,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: 0.2267673
+      value: 0.0948
       objectReference: {fileID: 0}
     - target: {fileID: 4722704484383011775, guid: 5a4f4819ba02c084d9e6783543e2270a,
         type: 3}
       propertyPath: m_LocalPosition.y
-      value: -0.12533352
+      value: -0.0157
       objectReference: {fileID: 0}
     - target: {fileID: 4722704484383011775, guid: 5a4f4819ba02c084d9e6783543e2270a,
         type: 3}
       propertyPath: m_LocalPosition.z
-      value: 0.042841002
+      value: 0.0112
       objectReference: {fileID: 0}
     - target: {fileID: 4722704484383011775, guid: 5a4f4819ba02c084d9e6783543e2270a,
         type: 3}
       propertyPath: m_LocalRotation.x
-      value: 0.6378303
+      value: 0.6380447
       objectReference: {fileID: 0}
     - target: {fileID: 4722704484383011775, guid: 5a4f4819ba02c084d9e6783543e2270a,
         type: 3}
       propertyPath: m_LocalRotation.y
-      value: 0.38134676
+      value: 0.38111055
       objectReference: {fileID: 0}
     - target: {fileID: 4722704484383011775, guid: 5a4f4819ba02c084d9e6783543e2270a,
         type: 3}
       propertyPath: m_LocalRotation.z
-      value: 0.44981197
+      value: 0.44950786
       objectReference: {fileID: 0}
     - target: {fileID: 4722704484383011775, guid: 5a4f4819ba02c084d9e6783543e2270a,
         type: 3}
       propertyPath: m_LocalRotation.w
-      value: 0.4953951
+      value: 0.4955768
       objectReference: {fileID: 0}
     - target: {fileID: 4722704484383011775, guid: 5a4f4819ba02c084d9e6783543e2270a,
         type: 3}
@@ -4598,11 +4599,6 @@ PrefabInstance:
       propertyPath: m_Pivot.y
       value: 0.5
       objectReference: {fileID: 0}
-    - target: {fileID: 2929252283123773951, guid: aaa2c939c0359ac4dbce3f49e8b90252,
-        type: 3}
-      propertyPath: deadZone
-      value: 0.1
-      objectReference: {fileID: 0}
     - target: {fileID: 2929252285020697096, guid: aaa2c939c0359ac4dbce3f49e8b90252,
         type: 3}
       propertyPath: m_AnchoredPosition.x
@@ -4627,6 +4623,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Color.a
       value: 0.3137255
+      objectReference: {fileID: 0}
+    - target: {fileID: 2929252283123773951, guid: aaa2c939c0359ac4dbce3f49e8b90252,
+        type: 3}
+      propertyPath: deadZone
+      value: 0.1
       objectReference: {fileID: 0}
     - target: {fileID: 2929252285020698103, guid: aaa2c939c0359ac4dbce3f49e8b90252,
         type: 3}
@@ -4719,6 +4720,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1156032815077632260, guid: 20418063063b31e459e523ba14cbd0f0,
+        type: 3}
+      propertyPath: _infiniteBullets
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 20418063063b31e459e523ba14cbd0f0, type: 3}

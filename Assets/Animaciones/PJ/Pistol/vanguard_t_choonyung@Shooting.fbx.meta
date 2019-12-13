@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: 1045b1bc09581024abbb2e0b2a4d9875
+guid: ac5327015e86d564396917a7f924e4be
 ModelImporter:
   serializedVersion: 23
   fileIDToRecycleName:
@@ -69,8 +69,6 @@ ModelImporter:
     100126: mixamorig:Spine1
     100128: mixamorig:Spine2
     100130: //RootNode
-    100132: vanguard_Mesh
-    100134: vanguard_visor
     400000: mixamorig:Head
     400002: mixamorig:HeadTop_End
     400004: mixamorig:Hips
@@ -137,19 +135,11 @@ ModelImporter:
     400126: mixamorig:Spine1
     400128: mixamorig:Spine2
     400130: //RootNode
-    400132: vanguard_Mesh
-    400134: vanguard_visor
-    2100000: Vanguard_VisorMat
-    2100002: VanguardBodyMat
-    4300000: vanguard_visor
-    4300002: vanguard_Mesh
-    7400000: RifleRun
+    7400000: Shooting
     9500000: //RootNode
-    13700000: vanguard_Mesh
-    13700002: vanguard_visor
   externalObjects: {}
   materials:
-    importMaterials: 1
+    importMaterials: 0
     materialName: 0
     materialSearch: 1
     materialLocation: 1
@@ -176,10 +166,10 @@ ModelImporter:
     extraUserProperties: []
     clipAnimations:
     - serializedVersion: 16
-      name: RifleRun
+      name: Shooting
       takeName: mixamo.com
       firstFrame: 0
-      lastFrame: 20
+      lastFrame: 35
       wrapMode: 0
       orientationOffsetY: 0
       level: 0
@@ -198,7 +188,15 @@ ModelImporter:
       mirror: 0
       bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
       curves: []
-      events: []
+      events:
+      - time: 0.22258772
+        functionName: EventShoot
+        data: 
+        objectReferenceParameter: {fileID: 11500000, guid: 4894824901972cd4f825e691ad511bdf,
+          type: 3}
+        floatParameter: 0
+        intParameter: 0
+        messageOptions: 0
       transformMask: []
       maskType: 3
       maskSource: {instanceID: 0}
@@ -238,7 +236,7 @@ ModelImporter:
     blendShapeNormalImportMode: 1
     normalSmoothingSource: 0
   importAnimation: 1
-  copyAvatar: 0
+  copyAvatar: 1
   humanDescription:
     serializedVersion: 2
     human: []
@@ -254,7 +252,8 @@ ModelImporter:
     hasTranslationDoF: 0
     hasExtraRoot: 0
     skeletonHasParents: 1
-  lastHumanDescriptionAvatarSource: {instanceID: 0}
+  lastHumanDescriptionAvatarSource: {fileID: 9000000, guid: 5950e5351e77ec446ac966d3ee7cb2be,
+    type: 3}
   animationType: 2
   humanoidOversampling: 1
   additionalBone: 0

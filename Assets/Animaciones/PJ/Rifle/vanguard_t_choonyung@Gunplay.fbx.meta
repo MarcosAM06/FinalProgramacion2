@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: 02a63de5ac5286048ba479fa20a47554
+guid: f3e16bc74c9debc48818bd6c5208d1ee
 ModelImporter:
   serializedVersion: 23
   fileIDToRecycleName:
@@ -69,8 +69,6 @@ ModelImporter:
     100126: mixamorig:Spine1
     100128: mixamorig:Spine2
     100130: //RootNode
-    100132: vanguard_Mesh
-    100134: vanguard_visor
     400000: mixamorig:Head
     400002: mixamorig:HeadTop_End
     400004: mixamorig:Hips
@@ -137,19 +135,11 @@ ModelImporter:
     400126: mixamorig:Spine1
     400128: mixamorig:Spine2
     400130: //RootNode
-    400132: vanguard_Mesh
-    400134: vanguard_visor
-    2100000: Vanguard_VisorMat
-    2100002: VanguardBodyMat
-    4300000: vanguard_visor
-    4300002: vanguard_Mesh
-    7400000: RifleShoot
+    7400000: Gunplay
     9500000: //RootNode
-    13700000: vanguard_Mesh
-    13700002: vanguard_visor
   externalObjects: {}
   materials:
-    importMaterials: 1
+    importMaterials: 0
     materialName: 0
     materialSearch: 1
     materialLocation: 1
@@ -167,16 +157,16 @@ ModelImporter:
     animationDoRetargetingWarnings: 0
     importAnimatedCustomProperties: 0
     importConstraints: 0
-    animationCompression: 1
-    animationRotationError: 0.5
-    animationPositionError: 0.5
-    animationScaleError: 0.5
+    animationCompression: 3
+    animationRotationError: 0
+    animationPositionError: 0
+    animationScaleError: 0
     animationWrapMode: 0
     extraExposedTransformPaths: []
     extraUserProperties: []
     clipAnimations:
     - serializedVersion: 16
-      name: RifleShoot
+      name: Gunplay
       takeName: mixamo.com
       firstFrame: 0
       lastFrame: 8
@@ -186,7 +176,7 @@ ModelImporter:
       cycleOffset: 0
       loop: 0
       hasAdditiveReferencePose: 0
-      loopTime: 0
+      loopTime: 1
       loopBlend: 0
       loopBlendOrientation: 0
       loopBlendPositionY: 0
@@ -198,7 +188,15 @@ ModelImporter:
       mirror: 0
       bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
       curves: []
-      events: []
+      events:
+      - time: 0.21710527
+        functionName: EventShoot
+        data: 
+        objectReferenceParameter: {fileID: 11500000, guid: 4894824901972cd4f825e691ad511bdf,
+          type: 3}
+        floatParameter: 0
+        intParameter: 0
+        messageOptions: 0
       transformMask: []
       maskType: 3
       maskSource: {instanceID: 0}
@@ -238,7 +236,7 @@ ModelImporter:
     blendShapeNormalImportMode: 1
     normalSmoothingSource: 0
   importAnimation: 1
-  copyAvatar: 0
+  copyAvatar: 1
   humanDescription:
     serializedVersion: 2
     human: []
@@ -254,7 +252,8 @@ ModelImporter:
     hasTranslationDoF: 0
     hasExtraRoot: 0
     skeletonHasParents: 1
-  lastHumanDescriptionAvatarSource: {instanceID: 0}
+  lastHumanDescriptionAvatarSource: {fileID: 9000000, guid: 948652f98b0f86d4f89d0307e4bb1322,
+    type: 3}
   animationType: 2
   humanoidOversampling: 1
   additionalBone: 0
