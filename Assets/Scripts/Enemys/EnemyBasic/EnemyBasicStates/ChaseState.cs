@@ -1,60 +1,45 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 using UnityEngine.AI;
 
 public class ChaseState<T> : State<T>
 {
+    Transform target;
+    EnemyBasic _owner;
+    Animator anim;
+    NavMeshAgent ag;
 
-    private Transform transform;
-    private Transform debugTarget;
-    public EnemyBasic Enemy;
-    public Animator Enemybasic;
-    public NavMeshAgent ag;
-
-
-
-    public ChaseState(Transform transform, Transform debugTarget, EnemyBasic enemyBasic, Animator enemyBasicAnim, NavMeshAgent ag)
+    public ChaseState(EnemyBasic enemyBasic, Transform target, Animator anim, NavMeshAgent ag)
     {
-        this.Enemybasic = enemyBasicAnim;
-        this.transform = transform;
-        this.debugTarget = debugTarget;
-        Enemy = enemyBasic;
+        _owner = enemyBasic;
+        this.anim = anim;
+        this.target = target;
+        this.ag = ag;
     }
 
     public override void Enter()
     {
-        Debug.Log("Enemigo persiguiendo");
+        Debug.Log("PURSUE STATE");
     }
 
     public override void Update()
     {
-        if (Enemy.onSigth == true)
+        if (_owner.targetDetected)
         {
-            Enemybasic.SetBool("IsWalking", true);
-            ag.SetDestination(debugTarget.position);
+            anim.SetBool("IsWalking", true);
+            ag.SetDestination(target.position);
 
+            if (_owner.isCollisioning == true)
+                _owner.m_SM.Feed(EnemyBasic.BE_Inputs.IsNear);
 
-
-            if (Enemy.onCollision == true)
-            {
-                Enemy.stateMachine.Feed(EnemyBasic.Feed.IsNear);
-            }
-
-            if (Enemy.onDamage == true)
-            {
-                Enemy.stateMachine.Feed(EnemyBasic.Feed.TakingDamage);
-            }
-
+            if (_owner.isGettingDamage == true)
+                _owner.m_SM.Feed(EnemyBasic.BE_Inputs.TakingDamage);
         }
-
         else
-        {
-            Enemy.stateMachine.Feed(EnemyBasic.Feed.IsNotInSigth);
-        }
-
+            _owner.m_SM.Feed(EnemyBasic.BE_Inputs.IsNotInSigth);
     }
 
-
-
+    public override void Exit()
+    {
+        
+    }
 }

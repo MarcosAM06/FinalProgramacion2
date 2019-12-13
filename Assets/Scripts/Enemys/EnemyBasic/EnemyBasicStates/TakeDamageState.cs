@@ -25,16 +25,16 @@ public class TakeDamageState<T> : State<T>
 
     public override void Update()
     {
-        if (Enemy.onDamage ==true)
+        if (Enemy.isGettingDamage ==true)
         {
             Enemybasic.SetBool("GetHit", true);
         }
 
 
-        else if (Enemy.onDamage == false)
+        else if (Enemy.isGettingDamage == false)
         {
             Enemybasic.SetBool("GetHit", false);
-            Enemy.stateMachine.Feed(EnemyBasic.Feed.NoTakingDamage);
+            Enemy.m_SM.Feed(EnemyBasic.BE_Inputs.NoTakingDamage);
 
         }
 

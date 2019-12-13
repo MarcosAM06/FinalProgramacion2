@@ -25,14 +25,11 @@ public class AtackState<T> : State<T>
 
     public override void Update()
     {
-
-       
-
-        if (Enemy.onCollision == false)
+        if (Enemy.isCollisioning == false)
         {
             Enemybasic.SetBool("IsWalking", true);
             Enemybasic.SetBool("IsAtacking", false);
-            Enemy.stateMachine.Feed(EnemyBasic.Feed.IsNotNear);
+            Enemy.m_SM.Feed(EnemyBasic.BE_Inputs.IsNotNear);
 
         }
         else

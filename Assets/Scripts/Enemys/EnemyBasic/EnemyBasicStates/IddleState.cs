@@ -26,9 +26,9 @@ public class IddleState<T> : State<T>
 
     public override void Update()
     {
-        if (Enemy.onDamage == true)
+        if (Enemy.isGettingDamage == true)
             {
-                Enemy.stateMachine.Feed(EnemyBasic.Feed.TakingDamage);
+                Enemy.m_SM.Feed(EnemyBasic.BE_Inputs.TakingDamage);
             }
     }
 

@@ -1,115 +1,107 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 using UnityEngine.AI;
 
+[RequireComponent(typeof(NavMeshAgent), typeof(Animator))]
 public class EnemyBasic : MonoBehaviour, IFighter<HitData, HitResult>
 {
+    public bool targetDetected = true;
+    public bool isCollisioning = false;
+    public bool isGettingDamage = false;
 
-    NavMeshAgent ag;
-    public FSM<Feed> stateMachine;
+    [SerializeField] float range;
+    [SerializeField] float angle;
+    [SerializeField] float life;
+    [SerializeField] int EDamage;
+    [SerializeField] LayerMask visibles = ~0;
 
-    public float range;
-    public float angle;
-    public float life;
-    public int EDamage;
-    public bool onSigth = true;
-    public bool onCollision;
-    public bool onDamage;
-    public LayerMask visibles = ~0;
-    public Transform debugTarget;
-
-    public Animator enemyBasicAnim;
+    public enum BE_Inputs
+    {
+        IsInSigth,
+        IsNotInSigth,
+        IsNear,
+        IsNotNear,
+        TakingDamage,
+        NoTakingDamage,
+        IsDead
+    }
+    public FSM<BE_Inputs> m_SM;
+    Transform _target;
+    Animator _anims;
+    NavMeshAgent _agent;
 
     public bool IsAlive =>  life > 0;
 
     private void Awake()
     {
-        debugTarget = FindObjectOfType<Player>().transform;
-        ag = GetComponent<NavMeshAgent>();
+        //Componentes
+        _target = FindObjectOfType<Player>().transform;
+        _agent = GetComponent<NavMeshAgent>();
+        _anims = GetComponent<Animator>();
 
-    }
+        //State Machine.
+        var Iddle = new IddleState<BE_Inputs>(this, _anims);
+        var chase = new ChaseState<BE_Inputs>(this, _target, _anims, _agent);
+        var atack = new AtackState<BE_Inputs>(this, _anims);
+        var GetHit = new TakeDamageState<BE_Inputs>(this, _anims);
+        var Die = new DieState<BE_Inputs>();
 
-    void Start()
-    {
-        enemyBasicAnim = GetComponent<Animator>();
+        Iddle.AddTransition(BE_Inputs.IsInSigth, chase);
+        chase.AddTransition(BE_Inputs.IsNotInSigth, Iddle);
 
-        var Iddle = new IddleState<Feed>(this, enemyBasicAnim);
-        var chase = new ChaseState<Feed>(this.transform, debugTarget, this, enemyBasicAnim, ag);
-        var atack = new AtackState<Feed>(this, enemyBasicAnim);
-        var GetHit = new TakeDamageState<Feed>(this ,enemyBasicAnim);
-        var Die = new DieState<Feed>();
+        chase.AddTransition(BE_Inputs.IsNear, atack);
+        atack.AddTransition(BE_Inputs.IsNotNear, chase);
 
-        Iddle.AddTransition(Feed.IsInSigth, chase);
-        chase.AddTransition(Feed.IsNotInSigth, Iddle);
+        Iddle.AddTransition(BE_Inputs.TakingDamage, GetHit);
+        chase.AddTransition(BE_Inputs.TakingDamage, GetHit);
+        atack.AddTransition(BE_Inputs.TakingDamage, GetHit);
 
-        chase.AddTransition(Feed.IsNear, atack);
-        atack.AddTransition(Feed.IsNotNear, chase);
+        GetHit.AddTransition(BE_Inputs.NoTakingDamage, Iddle);
+        GetHit.AddTransition(BE_Inputs.IsDead, Die);
 
-        Iddle.AddTransition(Feed.TakingDamage, GetHit);
-        chase.AddTransition(Feed.TakingDamage, GetHit);
-        atack.AddTransition(Feed.TakingDamage, GetHit);
-
-        GetHit.AddTransition(Feed.NoTakingDamage, Iddle);
-        GetHit.AddTransition(Feed.IsDead, Die);
-
-
-        stateMachine = new FSM<Feed>(Iddle);
-
+        m_SM = new FSM<BE_Inputs>(Iddle);
     }
 
     void Update()
     {
-        stateMachine.Update();
-        onSigth = IsInSight(debugTarget);
-        if (onSigth == true)
-        {
-            Debug.Log("la wea te ve");
-            stateMachine.Feed(Feed.IsInSigth);
-        }
+        m_SM.Update();
 
+        Debug.Log("la wea te ve");
+        targetDetected = IsInSight(_target);
+        if (targetDetected == true)
+            m_SM.Feed(BE_Inputs.IsInSigth);
     }
 
-
+    //Line Of Sight
     public bool IsInSight(Transform target)
     {
-        
         var positionDiference = target.position - transform.position;
         var distance = positionDiference.magnitude;
-       
         var angleToTarget = Vector3.Angle(transform.forward, positionDiference);
-      
 
         if (distance < range && angleToTarget < (angle / 2))
         {
             RaycastHit hitInfo;
-
             if (Physics.Raycast(transform.position + Vector3.up, positionDiference.normalized, out hitInfo, range, visibles))
             return hitInfo.transform == target;
-
         }
-        
 
         return false;
     }
 
     public void OnCollisionEnter(Collision c)
     {
-
         if (c.gameObject.layer == LayerMask.NameToLayer("Player"))
         {
-            onCollision = true;
+            isCollisioning = true;
         }
-
     }
 
     public void OnCollisionExit(Collision c)
     {
         if (c.gameObject.layer == LayerMask.NameToLayer("Player"))
         {
-            onCollision = false;
+            isCollisioning = false;
         }
-
     }
 
     void OnDrawGizmos()
@@ -123,8 +115,8 @@ public class EnemyBasic : MonoBehaviour, IFighter<HitData, HitResult>
         Gizmos.DrawLine(position, position + Quaternion.Euler(0, angle / 2, 0) * transform.forward * range);
         Gizmos.DrawLine(position, position + Quaternion.Euler(0, -angle / 2, 0) * transform.forward * range);
 
-        if (debugTarget)
-        Gizmos.DrawLine(position, debugTarget.position);
+        if (_target)
+        Gizmos.DrawLine(position, _target.position);
     }
 
     //EnemyBasic recibe daño
@@ -142,7 +134,6 @@ public class EnemyBasic : MonoBehaviour, IFighter<HitData, HitResult>
         return result; 
     }
 
-    //
     public HitData GetCombatStats()
     {
         return new HitData()
@@ -155,17 +146,4 @@ public class EnemyBasic : MonoBehaviour, IFighter<HitData, HitResult>
     {
        
     }
-
-    public enum Feed
-    {
-        IsInSigth,
-        IsNotInSigth,
-        IsNear,
-        IsNotNear,
-        TakingDamage,
-        NoTakingDamage,
-        IsDead
-
-    }
-
 }
