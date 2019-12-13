@@ -56,6 +56,11 @@ public class ChaseState<T> : State<T>
                 Enemy.stateMachine.Feed(EnemyBasic.Feed.IsNear);
             }
 
+            if (Enemy.onDamage == true)
+            {
+                Enemy.stateMachine.Feed(EnemyBasic.Feed.TakingDamage);
+            }
+
         }
 
         else

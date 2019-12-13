@@ -1292,7 +1292,7 @@ Transform:
   m_GameObject: {fileID: 951107409}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 21.275, y: -10.411, z: -5.606}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 5.5636578, y: 3.9809866, z: 1.8416}
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 4
@@ -1456,15 +1456,15 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   range: 13
-  angle: 220.7
-  life: 100
+  angle: 136.65
+  life: 50
   onSigth: 0
   onCollision: 0
   SpeedChasing: 2
   DistanceForMaxSpeed: 1
   visibles:
     serializedVersion: 2
-    m_Bits: 512
+    m_Bits: 4294967295
   debugTarget: {fileID: 1395312659}
   enemyBasicAnim: {fileID: 0}
 --- !u!1 &1818379610 stripped

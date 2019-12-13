@@ -11,21 +11,27 @@ public class EnemyBasic : MonoBehaviour
     public float life;
     public bool onSigth = true;
     public bool onCollision;
+    public bool onDamage;
     public float SpeedChasing;
     public float DistanceForMaxSpeed;
     public LayerMask visibles = ~0;
-    public Transform debugTarget;
+    private Transform debugTarget;
 
     public Animator enemyBasicAnim;
+
+    private void Awake()
+    {
+        debugTarget = FindObjectOfType<Player>().transform;
+    }
 
     void Start()
     {
         enemyBasicAnim = GameObject.FindWithTag("EnemyBasic").GetComponent<Animator>();
 
-        var Iddle = new IddleState<Feed>();
+        var Iddle = new IddleState<Feed>(this, enemyBasicAnim);
         var chase = new ChaseState<Feed>(this.transform, debugTarget, SpeedChasing, DistanceForMaxSpeed, this, enemyBasicAnim);
         var atack = new AtackState<Feed>(this, enemyBasicAnim);
-        var GetHit = new TakeDamageState<Feed>();
+        var GetHit = new TakeDamageState<Feed>(this ,enemyBasicAnim);
         var Die = new DieState<Feed>();
 
         Iddle.AddTransition(Feed.IsInSigth, chase);
@@ -87,6 +93,12 @@ public class EnemyBasic : MonoBehaviour
         {
             onCollision = true;
         }
+        if (c.gameObject.layer == LayerMask.NameToLayer("Bullet"))
+        {
+            onDamage = true;
+
+        }
+
 
     }
 
@@ -96,6 +108,15 @@ public class EnemyBasic : MonoBehaviour
         {
             onCollision = false;
         }
+
+        if (c.gameObject.layer == LayerMask.NameToLayer("Bullet"))
+        {
+            onDamage = false;
+
+        }
+
+
+
     }
 
     void OnDrawGizmos()
