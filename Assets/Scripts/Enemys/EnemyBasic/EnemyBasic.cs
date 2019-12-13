@@ -1,35 +1,41 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.AI;
 
-public class EnemyBasic : MonoBehaviour
+public class EnemyBasic : MonoBehaviour, IFighter<HitData, HitResult>
 {
+
+    NavMeshAgent ag;
     public FSM<Feed> stateMachine;
 
     public float range;
     public float angle;
     public float life;
+    public int EDamage;
     public bool onSigth = true;
     public bool onCollision;
     public bool onDamage;
-    public float SpeedChasing;
-    public float DistanceForMaxSpeed;
     public LayerMask visibles = ~0;
-    private Transform debugTarget;
+    public Transform debugTarget;
 
     public Animator enemyBasicAnim;
+
+    public bool IsAlive =>  life > 0;
 
     private void Awake()
     {
         debugTarget = FindObjectOfType<Player>().transform;
+        ag = GetComponent<NavMeshAgent>();
+
     }
 
     void Start()
     {
-        enemyBasicAnim = GameObject.FindWithTag("EnemyBasic").GetComponent<Animator>();
+        enemyBasicAnim = GetComponent<Animator>();
 
         var Iddle = new IddleState<Feed>(this, enemyBasicAnim);
-        var chase = new ChaseState<Feed>(this.transform, debugTarget, SpeedChasing, DistanceForMaxSpeed, this, enemyBasicAnim);
+        var chase = new ChaseState<Feed>(this.transform, debugTarget, this, enemyBasicAnim, ag);
         var atack = new AtackState<Feed>(this, enemyBasicAnim);
         var GetHit = new TakeDamageState<Feed>(this ,enemyBasicAnim);
         var Die = new DieState<Feed>();
@@ -58,6 +64,7 @@ public class EnemyBasic : MonoBehaviour
         onSigth = IsInSight(debugTarget);
         if (onSigth == true)
         {
+            Debug.Log("la wea te ve");
             stateMachine.Feed(Feed.IsInSigth);
         }
 
@@ -93,12 +100,6 @@ public class EnemyBasic : MonoBehaviour
         {
             onCollision = true;
         }
-        if (c.gameObject.layer == LayerMask.NameToLayer("Bullet"))
-        {
-            onDamage = true;
-
-        }
-
 
     }
 
@@ -108,14 +109,6 @@ public class EnemyBasic : MonoBehaviour
         {
             onCollision = false;
         }
-
-        if (c.gameObject.layer == LayerMask.NameToLayer("Bullet"))
-        {
-            onDamage = false;
-
-        }
-
-
 
     }
 
@@ -132,6 +125,35 @@ public class EnemyBasic : MonoBehaviour
 
         if (debugTarget)
         Gizmos.DrawLine(position, debugTarget.position);
+    }
+
+    //EnemyBasic recibe daño
+    public HitResult Hit(HitData hitData)
+    {
+        HitResult result = new HitResult();
+
+        if (hitData.Damage > 0)
+        {
+            life -= hitData.Damage;
+
+            result.Conected = true;
+        }
+
+        return result; 
+    }
+
+    //
+    public HitData GetCombatStats()
+    {
+        return new HitData()
+        {
+            Damage = EDamage
+        };
+    }
+
+    public void OnHiConnected(HitResult hitResult)
+    {
+       
     }
 
     public enum Feed

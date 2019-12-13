@@ -70,7 +70,7 @@ public class Player : MonoBehaviour, IFighter<HitData,HitResult>
             weaponComp.OnShoot += () => _anim.SetBool("IsFiring", true);
             Weapons.Add(weaponComp.WeaponType, weaponComp);
         }
-        SetCurrentWeapon(WeaponType.Pistol);
+        SetPistol();
     }
 
     private void OnDrawGizmosSelected()
@@ -97,39 +97,32 @@ public class Player : MonoBehaviour, IFighter<HitData,HitResult>
         //Test
         if (Input.GetKeyDown(KeyCode.Alpha1))
         {
-            SetCurrentWeapon(WeaponType.AssaultRifle);
+            SetRifle();
         }
         if (Input.GetKeyDown(KeyCode.Alpha2))
         {
-            SetCurrentWeapon(WeaponType.Pistol);
+            SetPistol();
         }
     }
 
-    public void SetCurrentWeapon(WeaponType type)
+    public void SetPistol()
     {
-        if (Weapons.ContainsKey(type))
-        {
-            CurrentWeapon = Weapons[type];
-
-            switch (type)
-            {
-                case WeaponType.Pistol:
-                    CurrentWeapon.gameObject.SetActive(true);
-                    Weapons[WeaponType.AssaultRifle].gameObject.SetActive(false);
-                    _anim.runtimeAnimatorController = _pistolAnimations;
-                    break;
-                case WeaponType.AssaultRifle:
-                    CurrentWeapon.gameObject.SetActive(true);
-                    Weapons[WeaponType.Pistol].gameObject.SetActive(false);
-                    _anim.runtimeAnimatorController = _rifleAnimations;
-                    break;
-                case WeaponType.ShotGun:
-                    break;
-                default:
-                    break;
-            }
-        }
+        CurrentWeapon = Weapons[WeaponType.Pistol];
+        CurrentWeapon.gameObject.SetActive(true);
+        Weapons[WeaponType.AssaultRifle].gameObject.SetActive(false);
+        _anim.runtimeAnimatorController = _pistolAnimations;
     }
+
+    public void SetRifle()
+    {
+        CurrentWeapon = Weapons[WeaponType.AssaultRifle];
+        CurrentWeapon.gameObject.SetActive(true);
+        Weapons[WeaponType.Pistol].gameObject.SetActive(false);
+        _anim.runtimeAnimatorController = _rifleAnimations;
+
+    }
+
+  
 
     public void RotatePlayer()
     {
