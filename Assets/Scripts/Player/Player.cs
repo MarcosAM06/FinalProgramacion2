@@ -16,6 +16,7 @@ public class Player : MonoBehaviour, IFighter<HitData,HitResult>
     [SerializeField] LayerMask _targeteables = 0;
     [SerializeField] float _targetDetectionRange = 10f;
     [SerializeField] IFighter<HitData, HitResult> _target = null;
+    public GameObject FindedTarget = null;
 
     [Header("Stats")]
     [SerializeField] int _health = 100;
@@ -54,6 +55,8 @@ public class Player : MonoBehaviour, IFighter<HitData,HitResult>
 
     public bool IsAlive => _health > 0;
 
+    public bool ShootPhase { get; private set; }
+
     private void Awake()
     {
         _hud = GetComponent<PlayerHUD>();
@@ -67,7 +70,8 @@ public class Player : MonoBehaviour, IFighter<HitData,HitResult>
         foreach (var weaponComp in AviableWeapons)
         {
             weaponComp.SetOwner(this);
-            weaponComp.OnShoot += () => _anim.SetBool("IsFiring", true);
+            weaponComp.StartShootAnimation += () => _anim.SetBool("IsFiring", true);
+            weaponComp.StopShootAnimation += () => _anim.SetBool("IsFiring", false);
             Weapons.Add(weaponComp.WeaponType, weaponComp);
         }
         SetPistol();
@@ -78,30 +82,28 @@ public class Player : MonoBehaviour, IFighter<HitData,HitResult>
         Gizmos.color = Color.red;
         Gizmos.DrawSphere(hitPoint, 0.1f);
 
+        //RANGO DE DETECCIÓN DEL ENEMIGO MAS CERCANO.
         Gizmos.color = Color.blue;
         Gizmos.DrawSphere(_raycastOrigin, 0.1f);
         Gizmos.matrix = Matrix4x4.Scale(new Vector3(1, 0, 1));
         Gizmos.DrawWireSphere(transform.position, _targetDetectionRange);
     }
 
-
     // Update is called once per frame
     void Update()
     {
-        if (_joystick.Horizontal != 0 || _joystick.Vertical != 0)
-            MovePlayer(_joystick.Horizontal, _joystick.Vertical);
-        else StopPlayerMovement();
-        RotatePlayer();
         GetCloserTarget();
-
-        //Test
-        if (Input.GetKeyDown(KeyCode.Alpha1))
+        if (!CurrentWeapon.isFiring)
         {
-            SetRifle();
+            if (_joystick.Horizontal != 0 || _joystick.Vertical != 0)
+                MovePlayer(_joystick.Horizontal, _joystick.Vertical);
+            else StopPlayerMovement();
+            RotatePlayer();
         }
-        if (Input.GetKeyDown(KeyCode.Alpha2))
+        else
         {
-            SetPistol();
+            StopPlayerMovement();
+            RotatePlayerTowardsCloserTarget();
         }
     }
 
@@ -119,15 +121,17 @@ public class Player : MonoBehaviour, IFighter<HitData,HitResult>
         CurrentWeapon.gameObject.SetActive(true);
         Weapons[WeaponType.Pistol].gameObject.SetActive(false);
         _anim.runtimeAnimatorController = _rifleAnimations;
-
     }
-
-  
 
     public void RotatePlayer()
     {
         if (_axisDirection != Vector3.zero)
             transform.forward = _axisDirection;
+    }
+    public void RotatePlayerTowardsCloserTarget()
+    {
+        Vector3 dirToTarget = (_target.transform.position - transform.position).normalized;
+        transform.forward = dirToTarget;
     }
 
     /// <summary>
@@ -143,6 +147,9 @@ public class Player : MonoBehaviour, IFighter<HitData,HitResult>
 
         if (targets.Any())
             _target = targets.First();
+
+        if (_target != null)
+            FindedTarget = _target.gameObject;
     }
 
     public void MovePlayer(float HAxis, float VAxis)
@@ -171,13 +178,12 @@ public class Player : MonoBehaviour, IFighter<HitData,HitResult>
     //Hoockeamos esto x UI.
     public void Shoot()
     {
-        if (CurrentWeapon != null)
-            CurrentWeapon.Shoot();
+        CurrentWeapon.StartShooting();
     }
     public void StopShoot()
     {
-        if (CurrentWeapon != null)
-            _anim.SetBool("IsFiring", false);
+        print("FUCKING STOP SHOOTING NIGGA");
+        CurrentWeapon.StopShooting();
     }
 
     //================================================ BUFFS ==============================================================================
