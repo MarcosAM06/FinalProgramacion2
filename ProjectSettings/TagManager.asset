@@ -40,8 +40,8 @@ TagManager:
   - Enemies
   - Floor
   - 
-  - 
-  - 
+  - HurtBox
+  - HitBox
   m_SortingLayers:
   - name: Default
     uniqueID: 0
