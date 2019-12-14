@@ -5,6 +5,7 @@ public interface IFighter<TDataInput, TDataOutput>
     bool IsAlive { get; }
     Transform transform {get;}
     GameObject gameObject { get; }
+    bool enabled { get; }
 
     TDataOutput Hit(TDataInput hitData);
     TDataInput GetCombatStats();
@@ -18,5 +19,6 @@ public struct HitData
 
 public struct HitResult
 {
+    public bool targetEliminated;
     public bool Conected;
 }

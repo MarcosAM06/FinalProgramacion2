@@ -27,7 +27,7 @@ public class WeaponUpgrade : MonoBehaviour
         {
             playerWeapon.IncreaseDamage(_damageBoost);
             playerWeapon.IncreaseAmmoCapacity(_ammoCapacityBoost);
-            playerWeapon.IncreaseReloadSpeed(_reloadSpeedBoost);
+            playerWeapon.ReduxReloadTime(_reloadSpeedBoost);
             playerWeapon.ReduxFireRate(_fireRateReduction);
 
             Destroy(gameObject);

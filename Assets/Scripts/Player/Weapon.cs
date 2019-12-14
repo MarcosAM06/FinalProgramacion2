@@ -12,6 +12,8 @@ public class Weapon : MonoBehaviour
 {
     public event Action StartShootAnimation = delegate { };
     public event Action StopShootAnimation = delegate { };
+    public event Action StartReloadAnimation = delegate { };
+    public event Action EndReloadAnimation = delegate { };
 
     public WeaponType WeaponType = WeaponType.Pistol;
     [SerializeField] GameObject _bulletPrefab = null;
@@ -29,42 +31,10 @@ public class Weapon : MonoBehaviour
     [SerializeField] bool _infiniteBullets = false;
 
     IFighter<HitData, HitResult> _owner;
+    public bool canShoot { get => _magazine > 0; }
     public bool isReloading = false;
     public bool shootPhase = false;
     public bool isFiring = false;
-    float timeToShoot = 0;
-
-    // Update is called once per frame
-    void Update()
-    {
-        //Reloading.
-        if (timeToShoot > 0)
-        {
-            StopShootAnimation();
-
-            timeToShoot -= Time.deltaTime;
-            if (timeToShoot <= 0 && isReloading)
-            {
-                isReloading = false;
-                timeToShoot = 0;
-
-                int bulletsToAdd = _ammoCapacity - _magazine; //si tengo 1 sola bala, necesito 9.
-                if (_backPack >= bulletsToAdd)
-                    _backPack -= bulletsToAdd;
-                if (_backPack > 0 && _backPack < bulletsToAdd)
-                {
-                    bulletsToAdd = _backPack;
-                    _backPack = 0;
-                }
-
-                _magazine = bulletsToAdd;
-                print("====================== END RELOAD PHASE ============================");
-
-                if (shootPhase) StartShootAnimation();
-            }
-        }
-
-    }
 
     public void StartShooting()
     {
@@ -94,32 +64,37 @@ public class Weapon : MonoBehaviour
             bulletInstace.SetOwner(_owner);
         }
         else
-            Reload();
+            OnStartReload();
     }
-    public void Reload()
+
+    public void OnStartReload()
     {
-        print("====================== START RELOAD PHASE ============================");
+        StopShootAnimation();
+        if (_infiniteBullets || _backPack > 0)
+        {
+            isReloading = true;
+            StartReloadAnimation();
+        }
+    }
+    public void OnEndReloading()
+    {
+        int bulletsToAdd = _ammoCapacity - _magazine; //si tengo 1 sola bala, necesito 9.
         if (!_infiniteBullets)
         {
-            print("Las balas no son infinitas...");
-            //Si las balas no son infinitas, solo cargamos si tengo suficientes balas en el backpack.
-            if (_backPack > 0)
+            if (_backPack >= bulletsToAdd) _backPack -= bulletsToAdd;
+            if (_backPack > 0 && _backPack < bulletsToAdd)
             {
-                isReloading = true;
-                timeToShoot = _reloadTime;
-            }
-            else
-            {
-                //NO tenemos balas para cargar.
+                bulletsToAdd = _backPack;
+                _backPack = 0;
             }
         }
-        else
-        {
-            print("Las balas SON infinitas...");
-            //Si las balas son infinitas, relodeamos igualmente.
-            isReloading = true;
-            timeToShoot = _reloadTime;
-        }
+
+        EndReloadAnimation();
+        isReloading = false;
+        _magazine = bulletsToAdd;
+        print("====================== END RELOAD PHASE ============================");
+
+        if (shootPhase) StartShootAnimation();
     }
     public void IncreaseDamage(int ammount)
     {

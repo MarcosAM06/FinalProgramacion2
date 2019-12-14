@@ -1,10 +1,9 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 
 [RequireComponent(typeof(Rigidbody))]
 public class Bullet : MonoBehaviour
 {
+    [SerializeField] int Damage = 10;
     [SerializeField] float _travelSpeed = 10f;
     [SerializeField] float _maxLifeTime = 5f;
 
@@ -22,7 +21,7 @@ public class Bullet : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        _rb.AddForce(transform.forward * _travelSpeed, ForceMode.VelocityChange);
+        _rb.AddForce(transform.forward * _travelSpeed, ForceMode.Force);
 
         _lifeTime -= Time.deltaTime;
         if (_lifeTime < 0) Destroy(gameObject);
@@ -33,12 +32,25 @@ public class Bullet : MonoBehaviour
         _owner = owner;
     }
 
+    private void OnTriggerEnter(Collider other)
+    {
+        if (other.gameObject != _owner.gameObject)
+        {
+            print(string.Format("Hitted target {0}", other.gameObject));
+            var target = other.GetComponentInParent<IFighter<HitData, HitResult>>();
+
+            if (target != null)
+                _owner.OnHiConnected(target.Hit(new HitData() { Damage = this.Damage }));
+
+            Destroy(gameObject);
+        }
+    }
+
     private void OnCollisionEnter(Collision collision)
     {
         if (collision.gameObject != _owner.gameObject)
         {
-            //Aplica daño al target;
-
+            print(string.Format("Colisioné con {0}", collision.gameObject.name));
             Destroy(gameObject);
         }
     }

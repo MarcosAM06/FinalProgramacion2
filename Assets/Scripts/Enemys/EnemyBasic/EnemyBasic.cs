@@ -8,11 +8,14 @@ public class EnemyBasic : MonoBehaviour, IFighter<HitData, HitResult>
     public bool isCollisioning = false;
     public bool isGettingDamage = false;
 
-    [SerializeField] float range;
-    [SerializeField] float angle;
-    [SerializeField] float life;
-    [SerializeField] int EDamage;
+    [SerializeField] float range = 0;
+    [SerializeField] float angle = 0;
+    [SerializeField] float life = 0;
+    [SerializeField] int EDamage = 0;
     [SerializeField] LayerMask visibles = ~0;
+    [SerializeField] Collider HurtBox = null;
+    [SerializeField] Collider HitBox = null;
+    [SerializeField] Collider MainCollider = null;
 
     public enum BE_Inputs
     {
@@ -43,9 +46,10 @@ public class EnemyBasic : MonoBehaviour, IFighter<HitData, HitResult>
         var chase = new ChaseState<BE_Inputs>(this, _target, _anims, _agent);
         var atack = new AtackState<BE_Inputs>(this, _anims);
         var GetHit = new TakeDamageState<BE_Inputs>(this, _anims);
-        var Die = new DieState<BE_Inputs>();
+        var Die = new DieState<BE_Inputs>(this, _anims);
 
         Iddle.AddTransition(BE_Inputs.IsInSigth, chase);
+        Iddle.AddTransition(BE_Inputs.IsDead, Die);
         chase.AddTransition(BE_Inputs.IsNotInSigth, Iddle);
 
         chase.AddTransition(BE_Inputs.IsNear, atack);
@@ -65,7 +69,6 @@ public class EnemyBasic : MonoBehaviour, IFighter<HitData, HitResult>
     {
         m_SM.Update();
 
-        Debug.Log("la wea te ve");
         targetDetected = IsInSight(_target);
         if (targetDetected == true)
             m_SM.Feed(BE_Inputs.IsInSigth);
@@ -86,6 +89,17 @@ public class EnemyBasic : MonoBehaviour, IFighter<HitData, HitResult>
         }
 
         return false;
+    }
+
+    public void DisableEntity()
+    {
+        HitBox.enabled = false;
+        HurtBox.enabled = false;
+        MainCollider.enabled = false;
+        _agent.enabled = false;
+        //Destroy(gameObject, 5f);
+
+        this.enabled = false;
     }
 
     public void OnCollisionEnter(Collision c)
@@ -127,8 +141,19 @@ public class EnemyBasic : MonoBehaviour, IFighter<HitData, HitResult>
         if (hitData.Damage > 0)
         {
             life -= hitData.Damage;
+            print("HIT");
 
             result.Conected = true;
+
+            if (life <= 0)
+            {
+                result.targetEliminated = true;
+                m_SM.Feed(BE_Inputs.IsDead);
+            }
+            else
+            {
+                m_SM.Feed(BE_Inputs.TakingDamage);
+            }
         }
 
         return result; 
@@ -144,6 +169,6 @@ public class EnemyBasic : MonoBehaviour, IFighter<HitData, HitResult>
 
     public void OnHiConnected(HitResult hitResult)
     {
-       
+       // Por ahora nada we.
     }
 }

@@ -20,8 +20,6 @@ TagManager:
   - 
   - PostProcessing
   - Player
-  - EnemyBasic
-  - Bullet
   - 
   - 
   - 
@@ -37,7 +35,9 @@ TagManager:
   - 
   - 
   - 
-  - Enemies
+  - 
+  - 
+  - Targeteable
   - Floor
   - 
   - HurtBox

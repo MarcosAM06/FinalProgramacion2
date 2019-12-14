@@ -11,6 +11,11 @@ public class P_AnimEventListener : MonoBehaviour
         _owner = GetComponentInParent<Player>();
     }
 
+    void EndReload()
+    {
+        _owner.CurrentWeapon.OnEndReloading();
+    }
+
     void StartShoot()
     {
         _owner.CurrentWeapon.isFiring = true;

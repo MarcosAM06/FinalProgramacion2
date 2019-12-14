@@ -260,6 +260,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 2979689903471500304}
+  - component: {fileID: 3695481457908942524}
   - component: {fileID: 2979689903478698994}
   - component: {fileID: 5516903708317380417}
   - component: {fileID: 2979689903807343749}
@@ -288,6 +289,20 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!136 &3695481457908942524
+CapsuleCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2979689903471394864}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  m_Radius: 0.5
+  m_Height: 1.8147268
+  m_Direction: 1
+  m_Center: {x: 0, y: 0.85581064, z: 0}
 --- !u!95 &2979689903478698994
 Animator:
   serializedVersion: 3
@@ -351,6 +366,9 @@ MonoBehaviour:
   visibles:
     serializedVersion: 2
     m_Bits: 512
+  HurtBox: {fileID: 3395837209790397244}
+  HitBox: {fileID: 3921506852383645992}
+  MainCollider: {fileID: 3695481457908942524}
 --- !u!1 &2979689903471394866
 GameObject:
   m_ObjectHideFlags: 0

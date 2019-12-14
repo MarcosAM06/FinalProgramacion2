@@ -72,6 +72,8 @@ public class Player : MonoBehaviour, IFighter<HitData,HitResult>
             weaponComp.SetOwner(this);
             weaponComp.StartShootAnimation += () => _anim.SetBool("IsFiring", true);
             weaponComp.StopShootAnimation += () => _anim.SetBool("IsFiring", false);
+            weaponComp.StartReloadAnimation += () => _anim.SetBool("IsReloading", true);
+            weaponComp.EndReloadAnimation += () => _anim.SetBool("IsReloading", false);
             Weapons.Add(weaponComp.WeaponType, weaponComp);
         }
         SetPistol();
@@ -93,12 +95,15 @@ public class Player : MonoBehaviour, IFighter<HitData,HitResult>
     void Update()
     {
         GetCloserTarget();
-        if (!CurrentWeapon.isFiring)
+        if (!CurrentWeapon.shootPhase)
         {
-            if (_joystick.Horizontal != 0 || _joystick.Vertical != 0)
-                MovePlayer(_joystick.Horizontal, _joystick.Vertical);
-            else StopPlayerMovement();
-            RotatePlayer();
+            if (!CurrentWeapon.isReloading)
+            {
+                if (_joystick.Horizontal != 0 || _joystick.Vertical != 0)
+                    MovePlayer(_joystick.Horizontal, _joystick.Vertical);
+                else StopPlayerMovement();
+                RotatePlayer();
+            }
         }
         else
         {
@@ -130,8 +135,11 @@ public class Player : MonoBehaviour, IFighter<HitData,HitResult>
     }
     public void RotatePlayerTowardsCloserTarget()
     {
-        Vector3 dirToTarget = (_target.transform.position - transform.position).normalized;
-        transform.forward = dirToTarget;
+        if (_target != null)
+        {
+            Vector3 dirToTarget = (_target.transform.position - transform.position).normalized;
+            transform.forward = dirToTarget;
+        }
     }
 
     /// <summary>
@@ -140,7 +148,11 @@ public class Player : MonoBehaviour, IFighter<HitData,HitResult>
     public void GetCloserTarget()
     {
         Collider[] targeteables = Physics.OverlapSphere(transform.position, _targetDetectionRange, _targeteables, QueryTriggerInteraction.Ignore);
-        var targets = targeteables.Where(coll => coll.GetComponent<IFighter<HitData, HitResult>>() != null)
+        var targets = targeteables.Where(coll => 
+                                   {
+                                       var comp = coll.GetComponent<IFighter<HitData, HitResult>>();
+                                       return (comp != null && comp.enabled);
+                                   })
                                   .Select(coll => coll.GetComponent<IFighter<HitData, HitResult>>())
                                   .Where(Fighter => Fighter.gameObject != gameObject)
                                   .OrderBy(OtherFitghter => Vector3.Distance(transform.position, OtherFitghter.transform.position));
@@ -178,11 +190,21 @@ public class Player : MonoBehaviour, IFighter<HitData,HitResult>
     //Hoockeamos esto x UI.
     public void Shoot()
     {
-        CurrentWeapon.StartShooting();
+
+        if (CurrentWeapon.canShoot)
+        {
+            CurrentWeapon.StartShooting();
+
+            if (_target != null) RotatePlayerTowardsCloserTarget();
+        }
+        else
+        {
+            print("No puedo disparar me quede sin balas");
+            //Activo un sonido de no-balas.
+        }
     }
     public void StopShoot()
     {
-        print("FUCKING STOP SHOOTING NIGGA");
         CurrentWeapon.StopShooting();
     }
 
@@ -250,6 +272,12 @@ public class Player : MonoBehaviour, IFighter<HitData,HitResult>
     public void OnHiConnected(HitResult hitResult)
     {
         //Puedo hacer cosas en base al resultado del hit.
+        if (hitResult.targetEliminated)
+        {
+            print("Objetivo eliminado");
+            _target = null;
+            GetCloserTarget();
+        }
     }
 
     /// <summary>
