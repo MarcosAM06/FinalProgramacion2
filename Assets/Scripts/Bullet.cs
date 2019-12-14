@@ -3,7 +3,8 @@
 [RequireComponent(typeof(Rigidbody))]
 public class Bullet : MonoBehaviour
 {
-    [SerializeField] int Damage = 10;
+    [HideInInspector] public int Damage = 10;
+
     [SerializeField] float _travelSpeed = 10f;
     [SerializeField] float _maxLifeTime = 5f;
 
