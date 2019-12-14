@@ -62,9 +62,10 @@ public class Weapon : MonoBehaviour
             _magazine--;
             Bullet bulletInstace = Instantiate(_bulletPrefab, _bulletSpawnPoint.position, Quaternion.LookRotation(_bulletSpawnPoint.forward)).GetComponent<Bullet>();
             bulletInstace.SetOwner(_owner);
+
+            if (_magazine <= 0)
+                OnStartReload();
         }
-        else
-            OnStartReload();
     }
 
     public void OnStartReload()
