@@ -1,0 +1,930 @@
+fileFormatVersion: 2
+guid: c8dea968bbc03d346b35d7e38c41592e
+ModelImporter:
+  serializedVersion: 23
+  fileIDToRecycleName:
+    100000: Hatch002
+    100002: Hatch003
+    100004: Hatch004
+    100006: Hatch005
+    100008: Hatch006
+    100010: Hatch1
+    100012: MetalBase
+    100014: MetalBase003
+    100016: MetalBase004
+    100018: MetalBase005
+    100020: MetalBase006
+    100022: MetalBase007
+    100024: MetalBase008
+    100026: MetalBase009
+    100028: MetalBase010
+    100030: MetalBase011
+    100032: MetalBase015
+    100034: MetalBase016
+    100036: MetalBase019
+    100038: MetalBase020
+    100040: MetalBase023
+    100042: MetalBase024
+    100044: MetalBase027
+    100046: MetalBase028
+    100048: MetalBase030
+    100050: MetalBase031
+    100052: MetalBase032
+    100054: MetalBase042
+    100056: MetalBase043
+    100058: MetalBase044
+    100060: MetalBase045
+    100062: MetalBase046
+    100064: MetalBase047
+    100066: MetalBase048
+    100068: MetalBase049
+    100070: MetalBase050
+    100072: MetalBase051
+    100074: MetalBase052
+    100076: MetalBase053
+    100078: MetalBase054
+    100080: MetalBase055
+    100082: MetalBase056
+    100084: MetalBase057
+    100086: MetalBase058
+    100088: MetalBase059
+    100090: MetalBase060
+    100092: MetalBase061
+    100094: //RootNode
+    100096: Pannel001
+    100098: Pannel002
+    100100: Pannel003
+    100102: Pannel004
+    100104: Pannel005
+    100106: Pannel006
+    100108: Pannel007
+    100110: Pannel008
+    100112: Pannel009
+    100114: Pannel010
+    100116: Pannel011
+    100118: Pannel012
+    100120: Pannel013
+    100122: Pannel014
+    100124: Pannel015
+    100126: Pannel016
+    100128: Pannel017
+    100130: Pannel018
+    100132: Pannel019
+    100134: Pannel020
+    100136: Pannel021
+    100138: Strip_001
+    100140: Strip_002
+    100142: Strip_003
+    100144: Strip_004
+    100146: Strip_005
+    100148: Strip_006
+    100150: Strip_007
+    100152: Strip_008
+    400000: Hatch002
+    400002: Hatch003
+    400004: Hatch004
+    400006: Hatch005
+    400008: Hatch006
+    400010: Hatch1
+    400012: MetalBase
+    400014: MetalBase003
+    400016: MetalBase004
+    400018: MetalBase005
+    400020: MetalBase006
+    400022: MetalBase007
+    400024: MetalBase008
+    400026: MetalBase009
+    400028: MetalBase010
+    400030: MetalBase011
+    400032: MetalBase015
+    400034: MetalBase016
+    400036: MetalBase019
+    400038: MetalBase020
+    400040: MetalBase023
+    400042: MetalBase024
+    400044: MetalBase027
+    400046: MetalBase028
+    400048: MetalBase030
+    400050: MetalBase031
+    400052: MetalBase032
+    400054: MetalBase042
+    400056: MetalBase043
+    400058: MetalBase044
+    400060: MetalBase045
+    400062: MetalBase046
+    400064: MetalBase047
+    400066: MetalBase048
+    400068: MetalBase049
+    400070: MetalBase050
+    400072: MetalBase051
+    400074: MetalBase052
+    400076: MetalBase053
+    400078: MetalBase054
+    400080: MetalBase055
+    400082: MetalBase056
+    400084: MetalBase057
+    400086: MetalBase058
+    400088: MetalBase059
+    400090: MetalBase060
+    400092: MetalBase061
+    400094: //RootNode
+    400096: Pannel001
+    400098: Pannel002
+    400100: Pannel003
+    400102: Pannel004
+    400104: Pannel005
+    400106: Pannel006
+    400108: Pannel007
+    400110: Pannel008
+    400112: Pannel009
+    400114: Pannel010
+    400116: Pannel011
+    400118: Pannel012
+    400120: Pannel013
+    400122: Pannel014
+    400124: Pannel015
+    400126: Pannel016
+    400128: Pannel017
+    400130: Pannel018
+    400132: Pannel019
+    400134: Pannel020
+    400136: Pannel021
+    400138: Strip_001
+    400140: Strip_002
+    400142: Strip_003
+    400144: Strip_004
+    400146: Strip_005
+    400148: Strip_006
+    400150: Strip_007
+    400152: Strip_008
+    2100000: Hatch002Mat
+    2100002: Hatch003Mat
+    2100004: Hatch004Mat
+    2100006: Hatch005Mat
+    2100008: Hatch006Mat
+    2100010: Hatch1Mat
+    2100012: MetalBaseMat
+    2100014: MetalBase003Mat
+    2100016: MetalBase004Mat
+    2100018: MetalBase005Mat
+    2100020: MetalBase006Mat
+    2100022: MetalBase007Mat
+    2100024: MetalBase008Mat
+    2100026: MetalBase009Mat
+    2100028: MetalBase010Mat
+    2100030: MetalBase011Mat
+    2100032: MetalBase015Mat
+    2100034: MetalBase016Mat
+    2100036: MetalBase019Mat
+    2100038: MetalBase020Mat
+    2100040: MetalBase023Mat
+    2100042: MetalBase024Mat
+    2100044: MetalBase027Mat
+    2100046: MetalBase028Mat
+    2100048: MetalBase030Mat
+    2100050: MetalBase031Mat
+    2100052: MetalBase032Mat
+    2100054: MetalBase042Mat
+    2100056: MetalBase043Mat
+    2100058: MetalBase044Mat
+    2100060: MetalBase045Mat
+    2100062: MetalBase046Mat
+    2100064: MetalBase047Mat
+    2100066: MetalBase048Mat
+    2100068: MetalBase049Mat
+    2100070: MetalBase050Mat
+    2100072: MetalBase051Mat
+    2100074: MetalBase052Mat
+    2100076: MetalBase053Mat
+    2100078: MetalBase054Mat
+    2100080: MetalBase055Mat
+    2100082: MetalBase056Mat
+    2100084: MetalBase057Mat
+    2100086: MetalBase058Mat
+    2100088: MetalBase059Mat
+    2100090: MetalBase060Mat
+    2100092: MetalBase061Mat
+    2100094: Pannel001Mat
+    2100096: Pannel002Mat
+    2100098: Pannel003Mat
+    2100100: Pannel004Mat
+    2100102: Pannel005Mat
+    2100104: Pannel006Mat
+    2100106: Pannel007Mat
+    2100108: Pannel008Mat
+    2100110: Pannel009Mat
+    2100112: Pannel010Mat
+    2100114: Pannel011Mat
+    2100116: Pannel012Mat
+    2100118: Pannel013Mat
+    2100120: Pannel014Mat
+    2100122: Pannel015Mat
+    2100124: Pannel016Mat
+    2100126: Pannel017Mat
+    2100128: Pannel018Mat
+    2100130: Pannel019Mat
+    2100132: Pannel020Mat
+    2100134: Pannel021Mat
+    2100136: Strip_001Mat
+    2100138: Strip_002Mat
+    2100140: Strip_003Mat
+    2100142: Strip_004Mat
+    2100144: Strip_005Mat
+    2100146: Strip_006Mat
+    2100148: Strip_007Mat
+    2100150: Strip_008Mat
+    2300000: Hatch002
+    2300002: Hatch003
+    2300004: Hatch004
+    2300006: Hatch005
+    2300008: Hatch006
+    2300010: Hatch1
+    2300012: MetalBase
+    2300014: MetalBase003
+    2300016: MetalBase004
+    2300018: MetalBase005
+    2300020: MetalBase006
+    2300022: MetalBase007
+    2300024: MetalBase008
+    2300026: MetalBase009
+    2300028: MetalBase010
+    2300030: MetalBase011
+    2300032: MetalBase015
+    2300034: MetalBase016
+    2300036: MetalBase019
+    2300038: MetalBase020
+    2300040: MetalBase023
+    2300042: MetalBase024
+    2300044: MetalBase027
+    2300046: MetalBase028
+    2300048: MetalBase030
+    2300050: MetalBase031
+    2300052: MetalBase032
+    2300054: MetalBase042
+    2300056: MetalBase043
+    2300058: MetalBase044
+    2300060: MetalBase045
+    2300062: MetalBase046
+    2300064: MetalBase047
+    2300066: MetalBase048
+    2300068: MetalBase049
+    2300070: MetalBase050
+    2300072: MetalBase051
+    2300074: MetalBase052
+    2300076: MetalBase053
+    2300078: MetalBase054
+    2300080: MetalBase055
+    2300082: MetalBase056
+    2300084: MetalBase057
+    2300086: MetalBase058
+    2300088: MetalBase059
+    2300090: MetalBase060
+    2300092: MetalBase061
+    2300094: Pannel001
+    2300096: Pannel002
+    2300098: Pannel003
+    2300100: Pannel004
+    2300102: Pannel005
+    2300104: Pannel006
+    2300106: Pannel007
+    2300108: Pannel008
+    2300110: Pannel009
+    2300112: Pannel010
+    2300114: Pannel011
+    2300116: Pannel012
+    2300118: Pannel013
+    2300120: Pannel014
+    2300122: Pannel015
+    2300124: Pannel016
+    2300126: Pannel017
+    2300128: Pannel018
+    2300130: Pannel019
+    2300132: Pannel020
+    2300134: Pannel021
+    2300136: Strip_001
+    2300138: Strip_002
+    2300140: Strip_003
+    2300142: Strip_004
+    2300144: Strip_005
+    2300146: Strip_006
+    2300148: Strip_007
+    2300150: Strip_008
+    3300000: Hatch002
+    3300002: Hatch003
+    3300004: Hatch004
+    3300006: Hatch005
+    3300008: Hatch006
+    3300010: Hatch1
+    3300012: MetalBase
+    3300014: MetalBase003
+    3300016: MetalBase004
+    3300018: MetalBase005
+    3300020: MetalBase006
+    3300022: MetalBase007
+    3300024: MetalBase008
+    3300026: MetalBase009
+    3300028: MetalBase010
+    3300030: MetalBase011
+    3300032: MetalBase015
+    3300034: MetalBase016
+    3300036: MetalBase019
+    3300038: MetalBase020
+    3300040: MetalBase023
+    3300042: MetalBase024
+    3300044: MetalBase027
+    3300046: MetalBase028
+    3300048: MetalBase030
+    3300050: MetalBase031
+    3300052: MetalBase032
+    3300054: MetalBase042
+    3300056: MetalBase043
+    3300058: MetalBase044
+    3300060: MetalBase045
+    3300062: MetalBase046
+    3300064: MetalBase047
+    3300066: MetalBase048
+    3300068: MetalBase049
+    3300070: MetalBase050
+    3300072: MetalBase051
+    3300074: MetalBase052
+    3300076: MetalBase053
+    3300078: MetalBase054
+    3300080: MetalBase055
+    3300082: MetalBase056
+    3300084: MetalBase057
+    3300086: MetalBase058
+    3300088: MetalBase059
+    3300090: MetalBase060
+    3300092: MetalBase061
+    3300094: Pannel001
+    3300096: Pannel002
+    3300098: Pannel003
+    3300100: Pannel004
+    3300102: Pannel005
+    3300104: Pannel006
+    3300106: Pannel007
+    3300108: Pannel008
+    3300110: Pannel009
+    3300112: Pannel010
+    3300114: Pannel011
+    3300116: Pannel012
+    3300118: Pannel013
+    3300120: Pannel014
+    3300122: Pannel015
+    3300124: Pannel016
+    3300126: Pannel017
+    3300128: Pannel018
+    3300130: Pannel019
+    3300132: Pannel020
+    3300134: Pannel021
+    3300136: Strip_001
+    3300138: Strip_002
+    3300140: Strip_003
+    3300142: Strip_004
+    3300144: Strip_005
+    3300146: Strip_006
+    3300148: Strip_007
+    3300150: Strip_008
+    4300000: Hatch002
+    4300002: Hatch003
+    4300004: Hatch004
+    4300006: Hatch005
+    4300008: Hatch006
+    4300010: Hatch1
+    4300012: MetalBase
+    4300014: MetalBase003
+    4300016: MetalBase004
+    4300018: MetalBase005
+    4300020: MetalBase006
+    4300022: MetalBase007
+    4300024: MetalBase008
+    4300026: MetalBase009
+    4300028: MetalBase010
+    4300030: MetalBase011
+    4300032: MetalBase015
+    4300034: MetalBase016
+    4300036: MetalBase019
+    4300038: MetalBase020
+    4300040: MetalBase023
+    4300042: MetalBase024
+    4300044: MetalBase027
+    4300046: MetalBase028
+    4300048: MetalBase030
+    4300050: MetalBase031
+    4300052: MetalBase032
+    4300054: MetalBase042
+    4300056: MetalBase043
+    4300058: MetalBase044
+    4300060: MetalBase045
+    4300062: MetalBase046
+    4300064: MetalBase047
+    4300066: MetalBase048
+    4300068: MetalBase049
+    4300070: MetalBase050
+    4300072: MetalBase051
+    4300074: MetalBase052
+    4300076: MetalBase053
+    4300078: MetalBase054
+    4300080: MetalBase055
+    4300082: MetalBase056
+    4300084: MetalBase057
+    4300086: MetalBase058
+    4300088: MetalBase059
+    4300090: MetalBase060
+    4300092: MetalBase061
+    4300094: Pannel001
+    4300096: Pannel002
+    4300098: Pannel003
+    4300100: Pannel004
+    4300102: Pannel005
+    4300104: Pannel006
+    4300106: Pannel007
+    4300108: Pannel008
+    4300110: Pannel009
+    4300112: Pannel010
+    4300114: Pannel011
+    4300116: Pannel012
+    4300118: Pannel013
+    4300120: Pannel014
+    4300122: Pannel015
+    4300124: Pannel016
+    4300126: Pannel017
+    4300128: Pannel018
+    4300130: Pannel019
+    4300132: Pannel020
+    4300134: Pannel021
+    4300136: Strip_001
+    4300138: Strip_002
+    4300140: Strip_003
+    4300142: Strip_004
+    4300144: Strip_005
+    4300146: Strip_006
+    4300148: Strip_007
+    4300150: Strip_008
+    2186277476908879412: ImportLogs
+  externalObjects:
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Hatch002Mat
+    second: {fileID: 2100000, guid: 41eb3ab1aff85554cbc1a54e1d07cafd, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Hatch003Mat
+    second: {fileID: 2100000, guid: 2a4c9ebdeffb1df49a453ed1dc63646a, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Hatch004Mat
+    second: {fileID: 2100000, guid: fe94276e913d2cd418ce28a43a8cbaeb, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Hatch005Mat
+    second: {fileID: 2100000, guid: c036ceafb71345448bb777eb90ac5703, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Hatch006Mat
+    second: {fileID: 2100000, guid: 57aba75f55b665c46a51b7f19ef79624, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Hatch1Mat
+    second: {fileID: 2100000, guid: b8cc5b7c5860ea34898d79fb3bd7338c, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: MetalBase003Mat
+    second: {fileID: 2100000, guid: 301d528f2cd46f245a467a27e1622bb2, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: MetalBase004Mat
+    second: {fileID: 2100000, guid: 59eaa74161066fb43b59389de0104746, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: MetalBase005Mat
+    second: {fileID: 2100000, guid: 92e7901e6b0f9b541b9ea8bd99fddbd7, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: MetalBase006Mat
+    second: {fileID: 2100000, guid: 06f9a4b640ab19e43a7b1f0b68e979fd, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: MetalBase007Mat
+    second: {fileID: 2100000, guid: 6859ae7d097e2394eb243202e488e2a2, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: MetalBase008Mat
+    second: {fileID: 2100000, guid: be4c694bea0fc5f4d838f8df96b7f94b, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: MetalBase009Mat
+    second: {fileID: 2100000, guid: 5dee7d1b07d03e64e8280814fbd4c908, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: MetalBase010Mat
+    second: {fileID: 2100000, guid: 8cc64370737d81e49861166d95f4ea4f, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: MetalBase011Mat
+    second: {fileID: 2100000, guid: 015f2cb535d7f47459131c1456ae7396, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: MetalBase015Mat
+    second: {fileID: 2100000, guid: e4011fafea0f38d47a2416dbc7094ffb, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: MetalBase016Mat
+    second: {fileID: 2100000, guid: 9311782e15a26964782538a35ab7857f, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: MetalBase019Mat
+    second: {fileID: 2100000, guid: b449945974f671b4ab10a0082d795fde, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: MetalBase020Mat
+    second: {fileID: 2100000, guid: 085970ff87cae5f4b93afe19beb12b65, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: MetalBase023Mat
+    second: {fileID: 2100000, guid: 80ff05aa006795e4fb8b945656c0ce76, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: MetalBase024Mat
+    second: {fileID: 2100000, guid: c70fbda5178d6c14e8564ff557150697, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: MetalBase027Mat
+    second: {fileID: 2100000, guid: ce3113c0fa3ebc849af93c8b0f90a271, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: MetalBase028Mat
+    second: {fileID: 2100000, guid: 816815eb5fbbddc4c8819c10c54de3a8, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: MetalBase030Mat
+    second: {fileID: 2100000, guid: ed766f51835bc384f8059109cc2e135c, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: MetalBase031Mat
+    second: {fileID: 2100000, guid: 64486b1583dc3e842a2c18c675315829, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: MetalBase032Mat
+    second: {fileID: 2100000, guid: 3a446a453027f6246a55b89158ed7032, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: MetalBase042Mat
+    second: {fileID: 2100000, guid: b487f7eef68ad31438ca07244d3baef2, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: MetalBase043Mat
+    second: {fileID: 2100000, guid: 2097a5d2f9e581543b0cf5cc5847b31a, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: MetalBase044Mat
+    second: {fileID: 2100000, guid: ae445ab68d531e8499e1ab19b254bc8c, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: MetalBase045Mat
+    second: {fileID: 2100000, guid: cb6a159c815524b49a0c0aaea58e758a, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: MetalBase046Mat
+    second: {fileID: 2100000, guid: 10f3d84e9722eac4784494a6f0428f40, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: MetalBase047Mat
+    second: {fileID: 2100000, guid: 99468ae8fe46ed04bbfe8b9a6aeee4a1, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: MetalBase048Mat
+    second: {fileID: 2100000, guid: b313c425f4935364c87a8c8d78de93ca, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: MetalBase049Mat
+    second: {fileID: 2100000, guid: d14276ba1eee2ea43b4a3a599e590afb, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: MetalBase050Mat
+    second: {fileID: 2100000, guid: 4e844611d9d9dd04f9a443aee76c170c, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: MetalBase051Mat
+    second: {fileID: 2100000, guid: 91c8a7dbc84538345a4d426705637231, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: MetalBase052Mat
+    second: {fileID: 2100000, guid: 0da72a1d42bfe3b49a85206f13db671f, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: MetalBase053Mat
+    second: {fileID: 2100000, guid: 2f3e68058634cf7469e5def09b8acba6, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: MetalBase054Mat
+    second: {fileID: 2100000, guid: 90458852ee7fc5d43af39536efc9f6d6, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: MetalBase055Mat
+    second: {fileID: 2100000, guid: 8255cdb81e0f04241a327bc9da3d6fed, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: MetalBase056Mat
+    second: {fileID: 2100000, guid: 38f0e46fadcc9ff4fa4d97b2ab674808, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: MetalBase057Mat
+    second: {fileID: 2100000, guid: 884e1c8a75d94b947a586c36e26eb888, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: MetalBase058Mat
+    second: {fileID: 2100000, guid: 49df0808c138c4b4d81031e17514a53a, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: MetalBase059Mat
+    second: {fileID: 2100000, guid: 87222ef1cb65eef498bdfad5c3b40c62, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: MetalBase060Mat
+    second: {fileID: 2100000, guid: f7d806a0ea49fdc438b7f3f4468b1f88, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: MetalBase061Mat
+    second: {fileID: 2100000, guid: ec7028b7226dac249a6474473eaad590, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: MetalBaseMat
+    second: {fileID: 2100000, guid: 603527fa818dfee458a188775590a1d4, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Pannel001Mat
+    second: {fileID: 2100000, guid: 9fdae3ca584183044bf831bc36ae382d, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Pannel002Mat
+    second: {fileID: 2100000, guid: c4d7b5467a7d8f34b99b87476e67574e, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Pannel003Mat
+    second: {fileID: 2100000, guid: 9075769b71d9b104da80f053cb6a8bdf, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Pannel004Mat
+    second: {fileID: 2100000, guid: aeed0840f574de34dbcb354347ccb321, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Pannel005Mat
+    second: {fileID: 2100000, guid: 8d38570b4c020be4d836c786dfd945eb, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Pannel006Mat
+    second: {fileID: 2100000, guid: d2202f1d8bb2397458afe878d7501452, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Pannel007Mat
+    second: {fileID: 2100000, guid: 83049c73bc032cb479dc0e29e715cbbb, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Pannel008Mat
+    second: {fileID: 2100000, guid: 072b549c61b0bd04b82b81d60ca65dd5, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Pannel009Mat
+    second: {fileID: 2100000, guid: dcaf985c1efa79040a34f8ecb0836cb0, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Pannel010Mat
+    second: {fileID: 2100000, guid: 1f9071f0c448d85428a63baf225e6424, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Pannel011Mat
+    second: {fileID: 2100000, guid: 83d9ef1f2663dc84cb59b05e9c3dd4e8, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Pannel012Mat
+    second: {fileID: 2100000, guid: 1e6cbe3853a5fe0448470db7384761b8, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Pannel013Mat
+    second: {fileID: 2100000, guid: a7152e2ffcb2ce64eb097faa15459a2a, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Pannel014Mat
+    second: {fileID: 2100000, guid: 60e31b263248d13428cdf3570ef7ba4c, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Pannel015Mat
+    second: {fileID: 2100000, guid: ff9e87aea1d4ae148ae2b0ba56227a67, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Pannel016Mat
+    second: {fileID: 2100000, guid: 62e138450a4916f4d8cdecd7e2727f9c, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Pannel017Mat
+    second: {fileID: 2100000, guid: 9a720c66458de2a4395a5b13f78475bf, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Pannel018Mat
+    second: {fileID: 2100000, guid: 2e9306018621ac04bb3579c0e86f9b21, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Pannel019Mat
+    second: {fileID: 2100000, guid: 3c9e06d55de6f6d4f95037e7a318a66d, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Pannel020Mat
+    second: {fileID: 2100000, guid: aa829df1da89bd044be684de6c5826e2, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Pannel021Mat
+    second: {fileID: 2100000, guid: b3d46b87bea540c4eb06b42acf43d1dc, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Strip_001Mat
+    second: {fileID: 2100000, guid: 5302b99df9a2ab34fb441f802df25dfc, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Strip_002Mat
+    second: {fileID: 2100000, guid: ec5b8efaf906ea544a13fad7f03550d9, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Strip_003Mat
+    second: {fileID: 2100000, guid: 2bd434d16700be3469416d727ecb016d, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Strip_004Mat
+    second: {fileID: 2100000, guid: 7c7cb67381f097e4ebeb59060e63be5e, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Strip_005Mat
+    second: {fileID: 2100000, guid: 99a44c9e2a7bb414fa18962dca2c1845, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Strip_006Mat
+    second: {fileID: 2100000, guid: f7ff042d7027ba341aba8874b25c1bdd, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Strip_007Mat
+    second: {fileID: 2100000, guid: 6e7e4c0125df4d944b403a5113f94de3, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Strip_008Mat
+    second: {fileID: 2100000, guid: a03790f2290b94e48ac088025f8d5bec, type: 2}
+  materials:
+    importMaterials: 1
+    materialName: 0
+    materialSearch: 1
+    materialLocation: 1
+  animations:
+    legacyGenerateAnimations: 4
+    bakeSimulation: 0
+    resampleCurves: 1
+    optimizeGameObjects: 0
+    motionNodeName: 
+    rigImportErrors: 
+    rigImportWarnings: 
+    animationImportErrors: 
+    animationImportWarnings: 
+    animationRetargetingWarnings: 
+    animationDoRetargetingWarnings: 0
+    importAnimatedCustomProperties: 0
+    importConstraints: 0
+    animationCompression: 1
+    animationRotationError: 0.5
+    animationPositionError: 0.5
+    animationScaleError: 0.5
+    animationWrapMode: 0
+    extraExposedTransformPaths: []
+    extraUserProperties: []
+    clipAnimations: []
+    isReadable: 1
+  meshes:
+    lODScreenPercentages: []
+    globalScale: 1
+    meshCompression: 0
+    addColliders: 0
+    useSRGBMaterialColor: 1
+    importVisibility: 1
+    importBlendShapes: 1
+    importCameras: 1
+    importLights: 1
+    swapUVChannels: 0
+    generateSecondaryUV: 0
+    useFileUnits: 1
+    optimizeMeshForGPU: 1
+    keepQuads: 0
+    weldVertices: 1
+    preserveHierarchy: 0
+    indexFormat: 0
+    secondaryUVAngleDistortion: 8
+    secondaryUVAreaDistortion: 15.000001
+    secondaryUVHardAngle: 88
+    secondaryUVPackMargin: 4
+    useFileScale: 1
+    previousCalculatedGlobalScale: 1
+    hasPreviousCalculatedGlobalScale: 0
+  tangentSpace:
+    normalSmoothAngle: 60
+    normalImportMode: 0
+    tangentImportMode: 3
+    normalCalculationMode: 4
+    legacyComputeAllNormalsFromSmoothingGroupsWhenMeshHasBlendShapes: 0
+    blendShapeNormalImportMode: 1
+    normalSmoothingSource: 0
+  importAnimation: 1
+  copyAvatar: 0
+  humanDescription:
+    serializedVersion: 2
+    human: []
+    skeleton: []
+    armTwist: 0.5
+    foreArmTwist: 0.5
+    upperLegTwist: 0.5
+    legTwist: 0.5
+    armStretch: 0.05
+    legStretch: 0.05
+    feetSpacing: 0
+    rootMotionBoneName: 
+    hasTranslationDoF: 0
+    hasExtraRoot: 0
+    skeletonHasParents: 1
+  lastHumanDescriptionAvatarSource: {instanceID: 0}
+  animationType: 0
+  humanoidOversampling: 1
+  additionalBone: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
