@@ -51,11 +51,8 @@ public class FirstLevelDoor : MonoBehaviour
     {
         if (open == true && open2 == true)
         {
-
-            doorLeft.transform.position = Vector3.Lerp(doorLeft.transform.position, new Vector3(6.46f,0,0), 1) * Time.deltaTime * speed;
-
-           
-
+            Destroy(doorLeft);
+            Destroy(doorRight);
         }
     }
 
