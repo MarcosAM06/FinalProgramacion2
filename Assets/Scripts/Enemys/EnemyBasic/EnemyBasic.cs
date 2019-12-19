@@ -22,6 +22,7 @@ public class EnemyBasic : Enemy
         IsDead
     }
     public FSM<BE_Inputs> m_SM;
+    BE_Inputs evaluation = BE_Inputs.IsNear;
 
     protected override void Awake()
     {
@@ -29,7 +30,7 @@ public class EnemyBasic : Enemy
 
         //State Machine.
         var Iddle = new IddleState<BE_Inputs>(this, _anims);
-        var chase = new ChaseState<BE_Inputs>(this, _target, _anims, _agent);
+        var chase = new ChaseState<BE_Inputs>(this, _target, _anims);
         var atack = new AtackState<BE_Inputs>(this, _anims);
         var GetHit = new TakeDamageState<BE_Inputs>(this, _anims);
         var Die = new DieState<BE_Inputs>(this, _anims);
@@ -51,8 +52,10 @@ public class EnemyBasic : Enemy
         m_SM = new FSM<BE_Inputs>(Iddle);
     }
 
-    void Update()
+    protected override void Update()
     {
+        base.Update();
+
         m_SM.Update();
 
         targetDetected = IsInSight(_target);
@@ -71,24 +74,40 @@ public class EnemyBasic : Enemy
         this.enabled = false;
     }
 
-    public void OnCollisionEnter(Collision c)
+    public override void EvaluateTarget()
     {
-        if (c.gameObject.layer == LayerMask.NameToLayer("Player"))
+        float distanceToTarget = Vector3.Distance(transform.position, _target.position);
+        if ( distanceToTarget > AttackRange && IsInSight(_target)) //Condición de salida del ataque.
         {
-            isCollisioning = true;
+            _anims.SetBool("IsAtacking", false);
+            evaluation = BE_Inputs.IsNotNear;
         }
     }
-
-    public void OnCollisionExit(Collision c)
+    public override void ExecuteEvaluateAction()
     {
-        if (c.gameObject.layer == LayerMask.NameToLayer("Player"))
-        {
-            isCollisioning = false;
-        }
+        if (evaluation == BE_Inputs.IsNotNear)
+            m_SM.Feed(evaluation);
     }
+    //public void OnCollisionEnter(Collision c)
+    //{
+    //    if (c.gameObject.layer == LayerMask.NameToLayer("Player"))
+    //    {
+    //        isCollisioning = true;
+    //    }
+    //}
 
-    void OnDrawGizmos()
+    //public void OnCollisionExit(Collision c)
+    //{
+    //    if (c.gameObject.layer == LayerMask.NameToLayer("Player"))
+    //    {
+    //        isCollisioning = false;
+    //    }
+    //}
+
+    protected override void OnDrawGizmosSelected()
     {
+        base.OnDrawGizmosSelected();
+
         var position = transform.position;
 
         Gizmos.color = Color.white;
@@ -99,7 +118,7 @@ public class EnemyBasic : Enemy
         Gizmos.DrawLine(position, position + Quaternion.Euler(0, -angle / 2, 0) * transform.forward * range);
 
         if (_target)
-        Gizmos.DrawLine(position, _target.position);
+            Gizmos.DrawLine(position, _target.position);
     }
 
     //EnemyBasic recibe daño
