@@ -24,8 +24,6 @@ public class Player : MonoBehaviour, IFighter<HitData,HitResult>
     [SerializeField] RuntimeAnimatorController _pistolAnimations = null;
     [SerializeField] RuntimeAnimatorController _rifleAnimations = null;
 
-
-
     public int Health
     {
         get => _health;
@@ -103,6 +101,17 @@ public class Player : MonoBehaviour, IFighter<HitData,HitResult>
     void Update()
     {
         GetCloserTarget();
+        if (CurrentWeapon.InfiniteBullets)
+        {
+            _hud._AmmoText.text = "Infinite";
+            _hud._magazineText.text = "Infinite";
+        }
+        else
+        {
+            _hud._AmmoText.text = string.Format("{0} / {1}", CurrentWeapon.Magazine, CurrentWeapon.AmmoCapacity);
+            _hud._magazineText.text = CurrentWeapon.backPack.ToString();
+        }
+
         if (!lockInput)
         {
             if (!CurrentWeapon.shootPhase)

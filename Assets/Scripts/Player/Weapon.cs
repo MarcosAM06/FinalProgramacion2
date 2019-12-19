@@ -15,6 +15,10 @@ public class Weapon : MonoBehaviour
     public event Action StartReloadAnimation = delegate { };
     public event Action EndReloadAnimation = delegate { };
 
+    public int Magazine { get => _magazine; }
+    public int backPack { get => _backPack; }
+    public int AmmoCapacity { get => _ammoCapacity; }
+
     public WeaponType WeaponType = WeaponType.Pistol;
     [SerializeField] GameObject _bulletPrefab = null;
     [SerializeField] Transform _bulletSpawnPoint = null;
@@ -34,6 +38,7 @@ public class Weapon : MonoBehaviour
     public bool canShoot { get => _magazine > 0; }
     public bool isReloading = false;
     public bool shootPhase = false;
+    public bool lockFire = false;
     public bool isFiring = false;
 
     public void StartShooting()
@@ -57,10 +62,12 @@ public class Weapon : MonoBehaviour
     /// </summary>
     public void Shoot()
     {
+        if (lockFire) return;
         if (_magazine > 0)
         {
             if (!InfiniteBullets) _magazine--;
 
+            lockFire = true;
             Bullet bulletInstace = Instantiate(_bulletPrefab, _bulletSpawnPoint.position, Quaternion.LookRotation(_bulletSpawnPoint.forward)).GetComponent<Bullet>();
             bulletInstace.Damage = _damage;
             bulletInstace.SetOwner(_owner);
@@ -81,20 +88,20 @@ public class Weapon : MonoBehaviour
     }
     public void OnEndReloading()
     {
-        int bulletsToAdd = _ammoCapacity - _magazine; //si tengo 1 sola bala, necesito 9.
         if (!InfiniteBullets)
         {
-            if (_backPack >= bulletsToAdd) _backPack -= bulletsToAdd;
-            if (_backPack > 0 && _backPack < bulletsToAdd)
-            {
+            int bulletsToAdd = 0;
+            if (_backPack >= _ammoCapacity)
+                bulletsToAdd = _ammoCapacity;
+            else if (_backPack < _ammoCapacity)
                 bulletsToAdd = _backPack;
-                _backPack = 0;
-            }
+
+            _backPack -= bulletsToAdd;
+            _magazine += bulletsToAdd;
         }
 
         EndReloadAnimation();
         isReloading = false;
-        _magazine = bulletsToAdd;
         print("====================== END RELOAD PHASE ============================");
 
         if (shootPhase) StartShootAnimation();

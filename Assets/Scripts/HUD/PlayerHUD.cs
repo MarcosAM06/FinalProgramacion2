@@ -4,10 +4,11 @@ using TMPro;
 
 public class PlayerHUD : MonoBehaviour
 {
+    public TMP_Text _healthText = null;
+    public TMP_Text _AmmoText = null;
+    public TMP_Text _magazineText = null;
+
     [SerializeField] Joystick joystick = null;
-    [SerializeField] TMP_Text _healthText = null;
-    [SerializeField] TMP_Text _AmmoText = null;
-    [SerializeField] TMP_Text _magazineText = null;
     [SerializeField] Button _switchWeaponLeft = null;
     [SerializeField] Button _switchWeaponRight = null;
     [SerializeField] Button _useHealthPackButton = null;

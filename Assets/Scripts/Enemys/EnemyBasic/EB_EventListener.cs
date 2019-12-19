@@ -12,6 +12,15 @@ public class EB_EventListener : MonoBehaviour
         _owner = GetComponentInParent<EnemyBasic>();
     }
 
+    /// <summary>
+    /// Se llama cuando la animacion de un hit recibido se termina.
+    /// </summary>
+    void HurtEnd()
+    {
+        _owner.Sm.Feed(EnemyBasic.BE_Inputs.NoTakingDamage);
+        _owner.StartCoroutine(_owner.CriticalHitCoolDown());
+    }
+
     //El combate en general tiene 3 fases: Start Up, Active y Recovery
 
     /// <summary>

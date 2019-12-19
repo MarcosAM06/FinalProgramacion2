@@ -1,34 +1,24 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 
 public class TakeDamageState<T> : State<T>
 {
-    public Animator Enemybasic;
-    public EnemyBasic Enemy;
+    public Animator _anims;
+    public EnemyBasic _owner;
 
     public TakeDamageState(EnemyBasic enemyBasic, Animator enemyBasicAnim)
     {
-        this.Enemybasic = enemyBasicAnim;
-        Enemy = enemyBasic;
+        _anims = enemyBasicAnim;
+        _owner = enemyBasic;
     }
 
     public override void Enter()
     {
-        //Debug.Log("Enemigo recibe daño");
+        _anims.SetBool("GetHit", true);
+        _owner.CanGetCriticalHit = false;
+        _owner.StopNavmeshNavigation();
     }
-
-    public override void Update()
+    public override void Exit()
     {
-        if (Enemy.isGettingDamage ==true)
-        {
-            Enemybasic.SetBool("GetHit", true);
-        }
-
-        else if (Enemy.isGettingDamage == false)
-        {
-            Enemybasic.SetBool("GetHit", false);
-            Enemy.m_SM.Feed(EnemyBasic.BE_Inputs.NoTakingDamage);
-        }
+        _anims.SetBool("GetHit", false);
     }
 }

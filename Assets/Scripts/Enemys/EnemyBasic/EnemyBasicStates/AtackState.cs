@@ -13,8 +13,12 @@ public class AtackState<T> : State<T>
 
     public override void Enter()
     {
-        Debug.Log("Enemigo Atacando");
         Animator.SetBool("IsAtacking", true);
+        _owner.isAttacking = true;
         _owner.StopNavmeshNavigation();
+    }
+    public override void Exit()
+    {
+        _owner.isAttacking = false;
     }
 }

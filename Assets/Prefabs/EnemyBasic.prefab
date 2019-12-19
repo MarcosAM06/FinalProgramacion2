@@ -264,7 +264,8 @@ GameObject:
   - component: {fileID: 2979689903478698994}
   - component: {fileID: 5516903708317380417}
   - component: {fileID: 2979689903807343749}
-  m_Layer: 10
+  - component: {fileID: 2735925881524559557}
+  m_Layer: 27
   m_Name: EnemyBasic
   m_TagString: EnemyBasic
   m_Icon: {fileID: 0}
@@ -356,19 +357,33 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 45ad83cfe2150664ab0ccb049d83c99c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  targetDetected: 1
-  isCollisioning: 0
-  isGettingDamage: 0
+  life: 50
   range: 13
   angle: 136.65
-  life: 50
-  EDamage: 0
   visibles:
     serializedVersion: 2
     m_Bits: 512
+  AttackRange: 1.2
+  targetDetected: 1
+  isCollisioning: 0
+  isGettingDamage: 0
+  EDamage: 0
   HurtBox: {fileID: 3395837209790397244}
   HitBox: {fileID: 3921506852383645992}
   MainCollider: {fileID: 3695481457908942524}
+--- !u!114 &2735925881524559557
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2979689903471394864}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3fd217cf4d0798849b8250edd2d36a2e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Hitbox: {fileID: 3921506852383645992}
 --- !u!1 &2979689903471394866
 GameObject:
   m_ObjectHideFlags: 0
@@ -2291,7 +2306,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 5850009303899518453}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalPosition: {x: -0.068, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 2979689903471500304}

@@ -4,9 +4,10 @@ public class State<T>
 {
     private Dictionary<T, State<T>> transitions = new Dictionary<T, State<T>>();
 
-    public void AddTransition(T key, State<T> nextState)
+    public State<T> AddTransition(T key, State<T> nextState)
     {
         transitions[key] = nextState;
+        return this;
     }
 
     public State<T> GetTransition(T key)

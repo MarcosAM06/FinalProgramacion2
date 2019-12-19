@@ -1,15 +1,18 @@
-﻿using UnityEngine;
+﻿using System.Collections;
+using UnityEngine;
 
 public class EnemyBasic : Enemy
 {
-    public bool targetDetected = true;
-    public bool isCollisioning = false;
-    public bool isGettingDamage = false;
+    public bool CanGetCriticalHit = true;
+    public bool isAttacking = false;
 
     [SerializeField] int EDamage = 0;
     [SerializeField] Collider HurtBox = null;
     [SerializeField] Collider HitBox = null;
     [SerializeField] Collider MainCollider = null;
+
+    [Header("Cooldowns & Timers")]
+    [SerializeField] float CriticalhitCooldownTime = 1f;
 
     public enum BE_Inputs
     {
@@ -21,7 +24,7 @@ public class EnemyBasic : Enemy
         NoTakingDamage,
         IsDead
     }
-    public FSM<BE_Inputs> m_SM;
+    public FSM<BE_Inputs> Sm;
     BE_Inputs evaluation = BE_Inputs.IsNear;
 
     protected override void Awake()
@@ -35,32 +38,36 @@ public class EnemyBasic : Enemy
         var GetHit = new TakeDamageState<BE_Inputs>(this, _anims);
         var Die = new DieState<BE_Inputs>(this, _anims);
 
-        Iddle.AddTransition(BE_Inputs.IsInSigth, chase);
-        Iddle.AddTransition(BE_Inputs.IsDead, Die);
-        chase.AddTransition(BE_Inputs.IsNotInSigth, Iddle);
+        Iddle.AddTransition(BE_Inputs.IsInSigth, chase)
+             .AddTransition(BE_Inputs.IsDead, Die)
+             .AddTransition(BE_Inputs.TakingDamage, GetHit);
 
-        chase.AddTransition(BE_Inputs.IsNear, atack);
-        atack.AddTransition(BE_Inputs.IsNotNear, chase);
+        chase.AddTransition(BE_Inputs.IsDead, Die)
+             .AddTransition(BE_Inputs.IsNotInSigth, Iddle)
+             .AddTransition(BE_Inputs.IsNear, atack)
+             .AddTransition(BE_Inputs.TakingDamage, GetHit);
 
-        Iddle.AddTransition(BE_Inputs.TakingDamage, GetHit);
-        chase.AddTransition(BE_Inputs.TakingDamage, GetHit);
-        atack.AddTransition(BE_Inputs.TakingDamage, GetHit);
+        atack.AddTransition(BE_Inputs.IsNotNear, chase)
+             .AddTransition(BE_Inputs.IsDead, Die)
+             .AddTransition(BE_Inputs.TakingDamage, GetHit);
 
-        GetHit.AddTransition(BE_Inputs.NoTakingDamage, Iddle);
-        GetHit.AddTransition(BE_Inputs.IsDead, Die);
+        GetHit.AddTransition(BE_Inputs.NoTakingDamage, Iddle)
+              .AddTransition(BE_Inputs.IsDead, Die);
 
-        m_SM = new FSM<BE_Inputs>(Iddle);
+        Sm = new FSM<BE_Inputs>(Iddle);
     }
 
     protected override void Update()
     {
+        if (life <= 0)
+            Sm.Feed(BE_Inputs.IsDead);
+
         base.Update();
 
-        m_SM.Update();
+        Sm.Update();
 
-        targetDetected = IsInSight(_target);
-        if (targetDetected == true)
-            m_SM.Feed(BE_Inputs.IsInSigth);
+        if (IsInSight(_target))
+            Sm.Feed(BE_Inputs.IsInSigth);
     }
 
     public override void DisableEntity()
@@ -86,23 +93,8 @@ public class EnemyBasic : Enemy
     public override void ExecuteEvaluateAction()
     {
         if (evaluation == BE_Inputs.IsNotNear)
-            m_SM.Feed(evaluation);
+            Sm.Feed(evaluation);
     }
-    //public void OnCollisionEnter(Collision c)
-    //{
-    //    if (c.gameObject.layer == LayerMask.NameToLayer("Player"))
-    //    {
-    //        isCollisioning = true;
-    //    }
-    //}
-
-    //public void OnCollisionExit(Collision c)
-    //{
-    //    if (c.gameObject.layer == LayerMask.NameToLayer("Player"))
-    //    {
-    //        isCollisioning = false;
-    //    }
-    //}
 
     protected override void OnDrawGizmosSelected()
     {
@@ -129,24 +121,18 @@ public class EnemyBasic : Enemy
         if (hitData.Damage > 0)
         {
             life -= hitData.Damage;
-            print("HIT");
-            this.transform.forward = _target.transform.position - this.transform.position;
             result.Conected = true;
-            _anims.SetBool("GetHit", true);
 
             if (life <= 0)
             {
                 result.targetEliminated = true;
-                m_SM.Feed(BE_Inputs.IsDead);
+                Sm.Feed(BE_Inputs.IsDead);
             }
-            else
-            {
-                m_SM.Feed(BE_Inputs.TakingDamage);
-                
-            }
+            else if(CanGetCriticalHit)
+                Sm.Feed(BE_Inputs.TakingDamage);
         }
 
-        return result; 
+        return result;
     }
 
     public override HitData GetCombatStats()
@@ -155,5 +141,12 @@ public class EnemyBasic : Enemy
         {
             Damage = EDamage
         };
+    }
+
+    public IEnumerator CriticalHitCoolDown()
+    {
+        CanGetCriticalHit = false;
+        yield return new WaitForSeconds(CriticalhitCooldownTime);
+        CanGetCriticalHit = true;
     }
 }

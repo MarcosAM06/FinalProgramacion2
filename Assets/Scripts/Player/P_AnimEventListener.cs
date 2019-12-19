@@ -18,15 +18,17 @@ public class P_AnimEventListener : MonoBehaviour
 
     void StartShoot()
     {
+        print("START SHOOT EVENT");
         _owner.CurrentWeapon.isFiring = true;
-    }
-    void EndShoot()
-    {
-        _owner.CurrentWeapon.isFiring = false;
     }
     void EventShoot()
     {
         _owner.CurrentWeapon.Shoot();
+    }
+    void EndShoot()
+    {
+        _owner.CurrentWeapon.isFiring = false;
+        _owner.CurrentWeapon.lockFire = false;
     }
 
     void HurtStarted()

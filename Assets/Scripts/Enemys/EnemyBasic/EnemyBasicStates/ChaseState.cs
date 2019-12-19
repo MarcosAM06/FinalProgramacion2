@@ -26,6 +26,6 @@ public class ChaseState<T> : State<T>
         float distToTarget = Vector3.Distance(_owner.transform.position, target.position);
 
         if (distToTarget <= _owner.AttackRange)
-            _owner.m_SM.Feed(EnemyBasic.BE_Inputs.IsNear);
+            _owner.Sm.Feed(EnemyBasic.BE_Inputs.IsNear);
     }
 }
