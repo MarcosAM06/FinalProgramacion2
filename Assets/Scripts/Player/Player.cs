@@ -264,6 +264,11 @@ public class Player : MonoBehaviour, IFighter<HitData,HitResult>
             Game.LoadScene(sceneIndex.Lvl2);
         }
 
+        if (other.gameObject.layer == LayerMask.NameToLayer("ExitLevel2"))
+        {
+            Game.LoadScene(sceneIndex.Lvl3);
+        }
+
     }
     private void OnTriggerExit(Collider other)
     {

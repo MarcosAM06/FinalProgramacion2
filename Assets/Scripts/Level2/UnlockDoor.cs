@@ -2,21 +2,24 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class FirstLevelDoor : MonoBehaviour
+public class UnlockDoor : MonoBehaviour
 {
 
     [SerializeField] Light Ligths;
     [SerializeField] Light Ligths1;
-    [SerializeField] Keycard keycard;
-    [SerializeField] Keycard keycard1;
+    [SerializeField] Valve valve;
+    [SerializeField] Valve valve1;
     [SerializeField] GameObject doorLeft;
     [SerializeField] GameObject doorRight;
+    [SerializeField] GameObject vapor;
+    [SerializeField] GameObject vapor1;
+
 
     public bool open;
     public bool open2;
     public Color StartColor;
     public Color EndColor;
-    
+
 
 
 
@@ -42,8 +45,8 @@ public class FirstLevelDoor : MonoBehaviour
 
     public void Awake()
     {
-        keycard.tellDoor += ChangeLightColor;
-        keycard1.tellDoor += ChangeLightColor2;
+        valve.tellDoor += ChangeLightColor;
+        valve1.tellDoor += ChangeLightColor2;
 
     }
 
@@ -53,8 +56,9 @@ public class FirstLevelDoor : MonoBehaviour
         {
             Destroy(doorLeft);
             Destroy(doorRight);
+            Destroy(vapor);
+            Destroy(vapor1);
+
         }
     }
-
-
 }
