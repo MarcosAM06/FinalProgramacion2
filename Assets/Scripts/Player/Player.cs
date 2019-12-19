@@ -223,6 +223,26 @@ public class Player : MonoBehaviour, IFighter<HitData,HitResult>
 
         return null;
     }
+    public void RestoreAllHealth()
+    {
+        Health = _maxHealth;
+    }
+    public void DoomGuyMode(bool active)
+    {
+        if (Weapons != null && Weapons.Count > 0)
+        {
+            foreach (var weapon in Weapons.Values)
+                weapon.InfiniteBullets = active;
+        }
+    }
+    public void AddExtraDamage(int extraDamage)
+    {
+        if (Weapons != null && Weapons.Count > 0)
+        {
+            foreach (var weapon in Weapons.Values)
+                weapon.IncreaseDamage(extraDamage);
+        }
+    }
 
     //================================================ COLLISIONES ========================================================================
 

@@ -28,7 +28,7 @@ public class Weapon : MonoBehaviour
     [SerializeField] float _reloadTime = 3f;
     [SerializeField] float _maxReloadTime = 3f;
 
-    [SerializeField] bool _infiniteBullets = false;
+    public bool InfiniteBullets = false;
 
     IFighter<HitData, HitResult> _owner;
     public bool canShoot { get => _magazine > 0; }
@@ -59,7 +59,8 @@ public class Weapon : MonoBehaviour
     {
         if (_magazine > 0)
         {
-            _magazine--;
+            if (!InfiniteBullets) _magazine--;
+
             Bullet bulletInstace = Instantiate(_bulletPrefab, _bulletSpawnPoint.position, Quaternion.LookRotation(_bulletSpawnPoint.forward)).GetComponent<Bullet>();
             bulletInstace.Damage = _damage;
             bulletInstace.SetOwner(_owner);
@@ -72,7 +73,7 @@ public class Weapon : MonoBehaviour
     public void OnStartReload()
     {
         StopShootAnimation();
-        if (_infiniteBullets || _backPack > 0)
+        if (InfiniteBullets || _backPack > 0)
         {
             isReloading = true;
             StartReloadAnimation();
@@ -81,7 +82,7 @@ public class Weapon : MonoBehaviour
     public void OnEndReloading()
     {
         int bulletsToAdd = _ammoCapacity - _magazine; //si tengo 1 sola bala, necesito 9.
-        if (!_infiniteBullets)
+        if (!InfiniteBullets)
         {
             if (_backPack >= bulletsToAdd) _backPack -= bulletsToAdd;
             if (_backPack > 0 && _backPack < bulletsToAdd)
