@@ -1,41 +1,28 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.AI;
 
-public class EnemyHard : MonoBehaviour, IFighter<HitData, HitResult>
+public class EnemyHard : Enemy 
 {
     public bool targetDetected = true;
     public bool isGettingDamage = false;
 
-    [SerializeField] float range = 0;
-    [SerializeField] float angle = 0;
-    [SerializeField] float life = 0;
     [SerializeField] int EDamage = 0;
-    [SerializeField] LayerMask visibles = ~0;
 
     public enum BE2_Inputs
-{
-    IsInSigth,
-    IsNotInSigth,
-    TakingDamage,
-    NoTakingDamage,
-    IsDead
-}
-
+    {
+        IsInSigth,
+        IsNotInSigth,
+        TakingDamage,
+        NoTakingDamage,
+        IsDead
+    }
 
     public FSM<BE2_Inputs> m_SM;
-    Transform _target;
-    Animator _anims;
- 
 
-    public bool IsAlive => life > 0;
-
-    private void Awake()
+    protected override void Awake()
     {
-        //Componentes
-        _target = FindObjectOfType<Player>().transform;
-        _anims = GetComponent<Animator>();
+        base.Awake(); //El Awake base rellena los componentes básicos.
 
         //State Machine.
         var Iddle = new IddleHardState<BE2_Inputs>(this, _anims);
@@ -44,7 +31,6 @@ public class EnemyHard : MonoBehaviour, IFighter<HitData, HitResult>
         var Die = new DieHardState<BE2_Inputs>(this, _anims);
 
         Iddle.AddTransition(BE2_Inputs.IsInSigth, Throw);
-       
 
         Throw.AddTransition(BE2_Inputs.IsNotInSigth, Iddle);
 
@@ -67,28 +53,11 @@ public class EnemyHard : MonoBehaviour, IFighter<HitData, HitResult>
             m_SM.Feed(BE2_Inputs.IsInSigth);
     }
 
-    public bool IsInSight(Transform target)
+    public override void DisableEntity()
     {
-        var positionDiference = target.position - transform.position;
-        var distance = positionDiference.magnitude;
-        var angleToTarget = Vector3.Angle(transform.forward, positionDiference);
-
-        if (distance < range && angleToTarget < (angle / 2))
-        {
-            RaycastHit hitInfo;
-            if (Physics.Raycast(transform.position + Vector3.up, positionDiference.normalized, out hitInfo, range, visibles))
-                return hitInfo.transform == target;
-        }
-
-        return false;
-    }
-
-    public void DisableEntity()
-    {
-       
         //Destroy(gameObject, 5f);
 
-        this.enabled = false;
+        enabled = false;
     }
 
     void OnDrawGizmos()
@@ -106,8 +75,9 @@ public class EnemyHard : MonoBehaviour, IFighter<HitData, HitResult>
             Gizmos.DrawLine(position, _target.position);
     }
 
+    //=================================== Sistema de Daño ========================================
 
-    public HitResult Hit(HitData hitData)
+    public override HitResult Hit(HitData hitData)
     {
         HitResult result = new HitResult();
 
@@ -132,16 +102,11 @@ public class EnemyHard : MonoBehaviour, IFighter<HitData, HitResult>
         return result;
     }
 
-    public HitData GetCombatStats()
+    public override HitData GetCombatStats()
     {
         return new HitData()
         {
             Damage = EDamage
         };
-    }
-
-    public void OnHiConnected(HitResult hitResult)
-    {
-       
     }
 }

@@ -1,18 +1,12 @@
 ﻿using UnityEngine;
-using UnityEngine.AI;
 
-[RequireComponent(typeof(NavMeshAgent), typeof(Animator))]
-public class EnemyBasic : MonoBehaviour, IFighter<HitData, HitResult>
+public class EnemyBasic : Enemy
 {
     public bool targetDetected = true;
     public bool isCollisioning = false;
     public bool isGettingDamage = false;
 
-    [SerializeField] float range = 0;
-    [SerializeField] float angle = 0;
-    [SerializeField] float life = 0;
     [SerializeField] int EDamage = 0;
-    [SerializeField] LayerMask visibles = ~0;
     [SerializeField] Collider HurtBox = null;
     [SerializeField] Collider HitBox = null;
     [SerializeField] Collider MainCollider = null;
@@ -28,18 +22,10 @@ public class EnemyBasic : MonoBehaviour, IFighter<HitData, HitResult>
         IsDead
     }
     public FSM<BE_Inputs> m_SM;
-    Transform _target;
-    Animator _anims;
-    NavMeshAgent _agent;
 
-    public bool IsAlive =>  life > 0;
-
-    private void Awake()
+    protected override void Awake()
     {
-        //Componentes
-        _target = FindObjectOfType<Player>().transform;
-        _agent = GetComponent<NavMeshAgent>();
-        _anims = GetComponent<Animator>();
+        base.Awake(); //El Awake base rellena los componentes básicos.
 
         //State Machine.
         var Iddle = new IddleState<BE_Inputs>(this, _anims);
@@ -74,24 +60,7 @@ public class EnemyBasic : MonoBehaviour, IFighter<HitData, HitResult>
             m_SM.Feed(BE_Inputs.IsInSigth);
     }
 
-    //Line Of Sight
-    public bool IsInSight(Transform target)
-    {
-        var positionDiference = target.position - transform.position;
-        var distance = positionDiference.magnitude;
-        var angleToTarget = Vector3.Angle(transform.forward, positionDiference);
-
-        if (distance < range && angleToTarget < (angle / 2))
-        {
-            RaycastHit hitInfo;
-            if (Physics.Raycast(transform.position + Vector3.up, positionDiference.normalized, out hitInfo, range, visibles))
-            return hitInfo.transform == target;
-        }
-
-        return false;
-    }
-
-    public void DisableEntity()
+    public override void DisableEntity()
     {
         HitBox.enabled = false;
         HurtBox.enabled = false;
@@ -134,7 +103,7 @@ public class EnemyBasic : MonoBehaviour, IFighter<HitData, HitResult>
     }
 
     //EnemyBasic recibe daño
-    public HitResult Hit(HitData hitData)
+    public override HitResult Hit(HitData hitData)
     {
         HitResult result = new HitResult();
 
@@ -161,16 +130,11 @@ public class EnemyBasic : MonoBehaviour, IFighter<HitData, HitResult>
         return result; 
     }
 
-    public HitData GetCombatStats()
+    public override HitData GetCombatStats()
     {
         return new HitData()
         {
             Damage = EDamage
         };
-    }
-
-    public void OnHiConnected(HitResult hitResult)
-    {
-       // Por ahora nada we.
     }
 }
