@@ -111,8 +111,9 @@ public class EnemyBasic : Enemy
         {
             life -= hitData.Damage;
             print("HIT");
-
+            this.transform.forward = _target.transform.position - this.transform.position;
             result.Conected = true;
+            _anims.SetBool("GetHit", true);
 
             if (life <= 0)
             {
@@ -122,6 +123,7 @@ public class EnemyBasic : Enemy
             else
             {
                 m_SM.Feed(BE_Inputs.TakingDamage);
+                
             }
         }
 
