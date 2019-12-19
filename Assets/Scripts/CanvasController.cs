@@ -8,6 +8,15 @@ public class CanvasController : MonoBehaviour {
 
     static public CanvasController Instance { get; private set; }
 
+
+    [SerializeField] GameObject MainMenuCanvas= null;
+    [SerializeField] GameObject AchievmentCanvas = null;
+
+
+
+
+
+    //Menu de pausa
     [SerializeField] GameObject PauseMenu = null;
     [SerializeField] GameObject GameOptions = null;
     [SerializeField] GameObject FixedJoystick = null;
@@ -34,6 +43,19 @@ public class CanvasController : MonoBehaviour {
     public void Credits()
     {
         Game.LoadScene(sceneIndex.Credits);
+    }
+
+    public void Achievments()
+    {
+        MainMenuCanvas.SetActive(false);
+        AchievmentCanvas.SetActive(true);
+
+    }
+
+    public void Return()
+    {
+        MainMenuCanvas.SetActive(true);
+        AchievmentCanvas.SetActive(false);
     }
 
     //MENU DE PAUSA
