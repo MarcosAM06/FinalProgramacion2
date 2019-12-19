@@ -24,6 +24,8 @@ public class Player : MonoBehaviour, IFighter<HitData,HitResult>
 
     [SerializeField] RuntimeAnimatorController _pistolAnimations = null;
     [SerializeField] RuntimeAnimatorController _rifleAnimations = null;
+    public int keycards = 0;
+    public int valves = 0;
 
     public int Health
     {
