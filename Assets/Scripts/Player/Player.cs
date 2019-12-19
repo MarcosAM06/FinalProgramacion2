@@ -24,8 +24,8 @@ public class Player : MonoBehaviour, IFighter<HitData,HitResult>
 
     [SerializeField] RuntimeAnimatorController _pistolAnimations = null;
     [SerializeField] RuntimeAnimatorController _rifleAnimations = null;
-    public int keycards = 0;
-    public int valves = 0;
+
+
 
     public int Health
     {
@@ -249,6 +249,7 @@ public class Player : MonoBehaviour, IFighter<HitData,HitResult>
     //Interacción con objetos.
     private void OnTriggerEnter(Collider other)
     {
+       
         //Obtenemos una referencia a un objeto interactuable.
         print("ENTRE EN EL TRIGGER");
         _currentActivable = other.GetComponent<Actibable>();
@@ -257,6 +258,12 @@ public class Player : MonoBehaviour, IFighter<HitData,HitResult>
             _hud.SwitchToInteractButton();
             other.GetComponent<Renderer>().material.color = Color.red;
         }
+
+        if (other.gameObject.layer == LayerMask.NameToLayer("ExitLevel1") )
+        {
+            Game.LoadScene(sceneIndex.Lvl2);
+        }
+
     }
     private void OnTriggerExit(Collider other)
     {
