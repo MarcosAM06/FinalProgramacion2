@@ -52,7 +52,7 @@ LightmapSettings:
     m_AlbedoBoost: 1
     m_EnvironmentLightingMode: 0
     m_EnableBakedLightmaps: 1
-    m_EnableRealtimeLightmaps: 1
+    m_EnableRealtimeLightmaps: 0
   m_LightmapEditorSettings:
     serializedVersion: 10
     m_Resolution: 2
@@ -73,8 +73,8 @@ LightmapSettings:
     m_MixedBakeMode: 2
     m_BakeBackend: 1
     m_PVRSampling: 1
-    m_PVRDirectSampleCount: 32
-    m_PVRSampleCount: 500
+    m_PVRDirectSampleCount: 18
+    m_PVRSampleCount: 250
     m_PVRBounces: 2
     m_PVRFilterTypeDirect: 0
     m_PVRFilterTypeIndirect: 0
@@ -7034,6 +7034,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalRotation.w
       value: 0.89847153
+      objectReference: {fileID: 0}
+    - target: {fileID: 4714890219726614221, guid: 5d79ebb6d0d633d489dc45d44731e4a0,
+        type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 5d79ebb6d0d633d489dc45d44731e4a0, type: 3}
@@ -15218,6 +15223,16 @@ PrefabInstance:
       propertyPath: m_LocalScale.z
       value: 0.036819045
       objectReference: {fileID: 0}
+    - target: {fileID: 4228761121925386575, guid: d123ee565e7d6e44baecc85181c06248,
+        type: 3}
+      propertyPath: m_LocalPosition.x
+      value: -491.1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4228761121925386575, guid: d123ee565e7d6e44baecc85181c06248,
+        type: 3}
+      propertyPath: m_LocalPosition.z
+      value: -0
+      objectReference: {fileID: 0}
     - target: {fileID: 4228761121925386549, guid: d123ee565e7d6e44baecc85181c06248,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -15314,16 +15329,6 @@ PrefabInstance:
       value: -491.1
       objectReference: {fileID: 0}
     - target: {fileID: 4228761121925386567, guid: d123ee565e7d6e44baecc85181c06248,
-        type: 3}
-      propertyPath: m_LocalPosition.z
-      value: -0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4228761121925386575, guid: d123ee565e7d6e44baecc85181c06248,
-        type: 3}
-      propertyPath: m_LocalPosition.x
-      value: -491.1
-      objectReference: {fileID: 0}
-    - target: {fileID: 4228761121925386575, guid: d123ee565e7d6e44baecc85181c06248,
         type: 3}
       propertyPath: m_LocalPosition.z
       value: -0
