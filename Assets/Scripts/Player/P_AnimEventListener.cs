@@ -28,4 +28,20 @@ public class P_AnimEventListener : MonoBehaviour
     {
         _owner.CurrentWeapon.Shoot();
     }
+
+    void HurtStarted()
+    {
+        //El jugador recibe daño y no se puede mover.
+    }
+    void HurtEnded()
+    {
+        //El jugador terminó la animación y ya se puede mover de vuelta.
+    }
+    /// <summary>
+    /// Evento que se llama cuando la animación de muerte se ha terminado.
+    /// </summary>
+    void Died()
+    {
+        Game.LoadScene(sceneIndex.Defeat);
+    }
 }
