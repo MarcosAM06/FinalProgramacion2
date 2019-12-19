@@ -20,9 +20,9 @@ TagManager:
   - 
   - PostProcessing
   - Player
-  - 
-  - 
-  - 
+  - ExitLevel1
+  - ExitLevel2
+  - FinishGame
   - 
   - 
   - 
