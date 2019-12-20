@@ -130,6 +130,7 @@ public class EnemyHard : Enemy
             if (_life <= 0)
             {
                 result.targetEliminated = true;
+                GameProgressTracker.NotifyRangeEnemyKilled();
                 SM.Feed(BE2_Inputs.IsDead);
             }
             else if (CanGetCriticalHit)

@@ -127,6 +127,7 @@ public class Boss : Enemy
             {
                 //Matamos al Jefe.
                 result.targetEliminated = true;
+                GameProgressTracker.BossEnemyKilled();
                 Sm.Feed(BS_Inputs.IsDead);
             }
         }

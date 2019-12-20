@@ -123,6 +123,7 @@ public class EnemyBasic : Enemy
             if (_life <= 0)
             {
                 result.targetEliminated = true;
+                GameProgressTracker.NofitySimpleEnemyKilled();
                 Sm.Feed(BE_Inputs.IsDead);
             }
             else if(CanGetCriticalHit)
