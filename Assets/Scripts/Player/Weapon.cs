@@ -15,6 +15,9 @@ public class Weapon : MonoBehaviour
     public event Action StartReloadAnimation = delegate { };
     public event Action EndReloadAnimation = delegate { };
 
+    public event Action OnShoot = delegate { };
+    public event Action OnReload = delegate { };
+
     public int Magazine { get => _magazine; }
     public int backPack { get => _backPack; }
     public int AmmoCapacity { get => _ammoCapacity; }
@@ -72,6 +75,8 @@ public class Weapon : MonoBehaviour
             bulletInstace.Damage = _damage;
             bulletInstace.SetOwner(_owner);
 
+            OnShoot();
+
             if (_magazine <= 0)
                 OnStartReload();
         }
@@ -80,6 +85,7 @@ public class Weapon : MonoBehaviour
     public void OnStartReload()
     {
         StopShootAnimation();
+        OnReload();
         if (InfiniteBullets || _backPack > 0)
         {
             isReloading = true;
