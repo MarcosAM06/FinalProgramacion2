@@ -10,6 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 2100776649180612130}
   - component: {fileID: 1282254522529663736}
+  - component: {fileID: 9051283478080333855}
   m_Layer: 0
   m_Name: GameFundamentals
   m_TagString: Untagged
@@ -45,3 +46,18 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   unlockedArchivements: {fileID: 11400000, guid: 5e84a0c08b0d1d8498c2a17350bbb4ef,
     type: 2}
+--- !u!114 &9051283478080333855
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4219226747511362}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8f1e92798c9cc1540a6d6c90f266e035, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  CurrentScene: 3
+  saveGamePath: SaveGame
+  isPlayableScene: 1
