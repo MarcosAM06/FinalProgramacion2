@@ -357,20 +357,20 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 45ad83cfe2150664ab0ccb049d83c99c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  life: 50
-  range: 13
-  angle: 136.65
+  _life: 80
+  _damage: 15
+  _range: 10
+  _angle: 90
   visibles:
     serializedVersion: 2
     m_Bits: 512
   AttackRange: 1.2
-  targetDetected: 1
-  isCollisioning: 0
-  isGettingDamage: 0
-  EDamage: 0
+  CanGetCriticalHit: 1
+  isAttacking: 0
   HurtBox: {fileID: 3395837209790397244}
   HitBox: {fileID: 3921506852383645992}
   MainCollider: {fileID: 3695481457908942524}
+  CriticalhitCooldownTime: 1
 --- !u!114 &2735925881524559557
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2338,6 +2338,7 @@ GameObject:
   - component: {fileID: 1332314109912258952}
   - component: {fileID: 2194458230624256350}
   - component: {fileID: 3921506852383645992}
+  - component: {fileID: 5880602519943693421}
   m_Layer: 31
   m_Name: HitBox
   m_TagString: Untagged
@@ -2417,3 +2418,15 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 1, y: 1, z: 1}
   m_Center: {x: 0, y: 0, z: 0}
+--- !u!114 &5880602519943693421
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7803411941515023653}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d45ea67d31f3ae044a16380466e93382, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 

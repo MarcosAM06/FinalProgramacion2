@@ -144,6 +144,11 @@ ModelImporter:
     13700000: parasiteZombie
   externalObjects:
   - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: parasitezombie_Material
+    second: {fileID: 2100000, guid: 879227c27cc24664ca5449dce0554ddb, type: 2}
+  - first:
       type: UnityEngine:Texture2D
       assembly: UnityEngine.CoreModule
       name: parasiteZombie_diffuse

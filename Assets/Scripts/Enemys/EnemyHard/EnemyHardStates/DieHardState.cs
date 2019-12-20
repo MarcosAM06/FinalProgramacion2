@@ -1,6 +1,4 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 
 public class DieHardState<T> : State<T>
 {
@@ -9,7 +7,7 @@ public class DieHardState<T> : State<T>
 
     public DieHardState(EnemyHard owner, Animator anim)
     {
-        this._owner = owner;
+        _owner = owner;
         anims = anim;
     }
 
