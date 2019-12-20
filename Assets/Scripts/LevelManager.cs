@@ -1,4 +1,5 @@
 ﻿using UnityEngine;
+using UnityEditor;
 
 public class LevelManager : MonoBehaviour
 {
@@ -49,6 +50,7 @@ public class LevelManager : MonoBehaviour
             CheckPointData lastData = LoadGame();
             player = FindObjectOfType<Player>();
             lastData.healthAmmount = player.Health;
+
 
             Weapon rifle = player.GetWeaponByType(WeaponType.AssaultRifle);
             lastData.BulletsInMagazine = rifle.Magazine;

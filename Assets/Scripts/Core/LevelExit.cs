@@ -1,4 +1,5 @@
 ﻿using UnityEngine;
+using UnityEditor;
 
 [AddComponentMenu("CoreGame/ExitLevel", 2) ,RequireComponent(typeof(Collider))]
 public class LevelExit : MonoBehaviour
@@ -19,6 +20,7 @@ public class LevelExit : MonoBehaviour
         if (other.CompareTag("Player"))
         {
             level.SaveGame();
+            AssetDatabase.SaveAssets();
 
             if (level.CurrentScene == sceneIndex.Lvl1 && sceneIndex == sceneIndex.Lvl2)
                 GameProgressTracker.NotifyCompletedLevel(level.CurrentScene);
