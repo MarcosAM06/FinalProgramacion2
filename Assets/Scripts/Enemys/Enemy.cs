@@ -7,11 +7,12 @@ using UnityEngine.AI;
 public class Enemy : MonoBehaviour, IFighter<HitData, HitResult>
 {
     //Stats Básicas
-    [SerializeField] protected float life = 0;
+    [SerializeField] protected float _life = 0;
+    [SerializeField] protected int _damage = 0;
 
     [Header("Line Of Sight")]
-    [SerializeField] protected float range = 0;
-    [SerializeField] protected float angle = 0;
+    [SerializeField] protected float _range = 0;
+    [SerializeField] protected float _angle = 0;
     [SerializeField] protected LayerMask visibles = ~0;
 
     [Header("Combate")]
@@ -79,10 +80,10 @@ public class Enemy : MonoBehaviour, IFighter<HitData, HitResult>
         var distance = positionDiference.magnitude;
         var angleToTarget = Vector3.Angle(transform.forward, positionDiference);
 
-        if (distance < range && angleToTarget < (angle / 2))
+        if (distance < _range && angleToTarget < (_angle / 2))
         {
             RaycastHit hitInfo;
-            if (Physics.Raycast(transform.position + Vector3.up, positionDiference.normalized, out hitInfo, range, visibles))
+            if (Physics.Raycast(transform.position + Vector3.up, positionDiference.normalized, out hitInfo, _range, visibles))
                 return hitInfo.transform == target;
         }
 
@@ -91,7 +92,7 @@ public class Enemy : MonoBehaviour, IFighter<HitData, HitResult>
 
     //=================================== Sistema de Daño ========================================
 
-    public bool IsAlive => life > 0;
+    public bool IsAlive => _life > 0;
 
     public virtual HitData GetCombatStats() { return new HitData() { Damage = 0 }; }
 
