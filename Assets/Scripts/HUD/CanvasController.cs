@@ -12,6 +12,7 @@ public class CanvasController : MonoBehaviour {
     [SerializeField] GameObject MainMenuCanvas= null;
     [SerializeField] GameObject AchievmentCanvas = null;
 
+
     //Menu de pausa
     [SerializeField] GameObject PauseMenu = null;
     [SerializeField] GameObject GameOptions = null;
@@ -57,6 +58,15 @@ public class CanvasController : MonoBehaviour {
         MainMenuCanvas.SetActive(true);
         AchievmentCanvas.SetActive(false);
     }
+
+    //PANTALLA PERDIDA
+    public void TryAgain()
+    {
+            
+    }
+
+
+
 
     //MENU DE PAUSA
     public void Continue()
