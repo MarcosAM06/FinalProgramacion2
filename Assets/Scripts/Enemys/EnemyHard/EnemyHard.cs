@@ -14,7 +14,6 @@ public class EnemyHard : Enemy
     }
     public FSM<BE2_Inputs> SM;
 
-    public bool CanGetCriticalHit = true;
     public bool isAttacking = false;
 
     [Header("Combate")]
@@ -24,9 +23,6 @@ public class EnemyHard : Enemy
 
     [SerializeField] Collider HurtBox = null;
     [SerializeField] Collider MainCollider = null;
-
-    [Header("Cooldowns & Timers")]
-    [SerializeField] float CriticalhitCooldownTime = 1f;
 
     //=================================== UNITY FUNCS ============================================
 
