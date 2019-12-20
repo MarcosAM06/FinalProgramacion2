@@ -5184,6 +5184,9 @@ MonoBehaviour:
   _maxHealth: 100
   _pistolAnimations: {fileID: 9100000, guid: 8fe62da3c4086e24ca1ccea9a43dd5af, type: 2}
   _rifleAnimations: {fileID: 9100000, guid: b897faf123c92ef41862105d31de4a0c, type: 2}
+  ShotPistol: {fileID: 0}
+  Hurt: {fileID: 0}
+  Reload: {fileID: 0}
   _movementSpeed: 5
   CurrentWeapon: {fileID: 0}
   _groundLayer:

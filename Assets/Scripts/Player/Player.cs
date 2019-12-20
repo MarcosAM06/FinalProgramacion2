@@ -17,11 +17,16 @@ public class Player : MonoBehaviour, IFighter<HitData,HitResult>
     public GameObject FindedTarget = null;
 
     [Header("Stats")]
-    [SerializeField] int _health = 100;
+    [SerializeField] public int _health = 100;
     [SerializeField] int _maxHealth = 100;
 
     [SerializeField] RuntimeAnimatorController _pistolAnimations = null;
     [SerializeField] RuntimeAnimatorController _rifleAnimations = null;
+
+    public AudioClip ShotPistol;
+    public AudioClip Hurt;
+    public AudioClip Reload;
+
 
     public int Health
     {
@@ -213,6 +218,7 @@ public class Player : MonoBehaviour, IFighter<HitData,HitResult>
         if (CurrentWeapon.canShoot)
         {
             CurrentWeapon.StartShooting();
+          //  Audiomanager.instance.Shot(ShotPistol);
 
             if (_target != null) RotatePlayerTowardsCloserTarget();
         }
