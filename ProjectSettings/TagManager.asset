@@ -39,7 +39,7 @@ TagManager:
   - 
   - Targeteable
   - Floor
-  - 
+  - SpawnPoint
   - HurtBox
   - HitBox
   m_SortingLayers:

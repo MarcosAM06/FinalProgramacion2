@@ -4,22 +4,18 @@ using UnityEngine;
 
 public class IddleState<T> : State<T>
 {
-    public Animator Enemybasic;
-    public EnemyBasic Enemy;
+    public Animator Anims;
+    public EnemyBasic _owner;
 
     public IddleState(EnemyBasic enemyBasic, Animator enemyBasicAnim)
     {
-        this.Enemybasic = enemyBasicAnim;
-        Enemy = enemyBasic;
+        Anims = enemyBasicAnim;
+        _owner = enemyBasic;
     }
 
     public override void Enter()
     {
         //Debug.Log("Enemigo iddle");
-        Enemybasic.SetBool("IsWalking", false);
-    }
-
-    public override void Update()
-    {
+        Anims.SetBool("IsWalking", false);
     }
 }
