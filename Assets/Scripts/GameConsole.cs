@@ -16,6 +16,17 @@ using UnityEngine.UI;
 */
 public class GameConsole : MonoBehaviour
 {
+
+    [SerializeField] GameObject PauseMenu = null;
+    [SerializeField] GameObject ConsoleComand = null;
+
+    public void DesactivateConsole()
+    {
+        ConsoleComand.SetActive(false);
+        PauseMenu.SetActive(true);
+    }
+
+
     public static GameConsole instance;
     Dictionary<string, Action> Commands = new Dictionary<string, Action>();
     [SerializeField] TMP_Text _consoleText = null;

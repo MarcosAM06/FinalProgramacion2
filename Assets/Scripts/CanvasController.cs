@@ -21,7 +21,9 @@ public class CanvasController : MonoBehaviour {
     [SerializeField] GameObject GameOptions = null;
     [SerializeField] GameObject FixedJoystick = null;
     [SerializeField] GameObject ShootButton = null;
-    [SerializeField] GameObject InteractButton = null;
+    [SerializeField] GameObject ConsoleComand = null;
+
+    // [SerializeField] GameObject InteractButton = null;
 
 
     public static bool IsInPause;
@@ -66,7 +68,7 @@ public class CanvasController : MonoBehaviour {
         GameOptions.SetActive(true);
         FixedJoystick.SetActive(true);
         ShootButton.SetActive(true);
-        InteractButton.SetActive(true);
+        //InteractButton.SetActive(true);
     }
 
     public void GoToMenu()
@@ -85,6 +87,14 @@ public class CanvasController : MonoBehaviour {
         GameOptions.SetActive(false);
         FixedJoystick.SetActive(false);
         ShootButton.SetActive(false);
-        InteractButton.SetActive(false);
+        //InteractButton.SetActive(false);
     }
+
+    public void ActivateConsole()
+    {
+        ConsoleComand.SetActive(true);
+        PauseMenu.SetActive(false);
+    }
+
+
 }
