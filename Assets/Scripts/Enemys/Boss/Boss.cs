@@ -21,6 +21,9 @@ public class Boss : Enemy
     [Header("On Dead")]
     [SerializeField] Collider HurtBox = null;
     [SerializeField] Collider MainCollider = null;
+    [SerializeField] GameObject doorLeft;
+    [SerializeField] GameObject doorRight;
+
 
     public enum BS_Inputs
     {
@@ -72,7 +75,11 @@ public class Boss : Enemy
     protected override void Update()
     {
         if (_life <= 0)
+        {
             Sm.Feed(BS_Inputs.IsDead);
+            
+        }
+       
 
         base.Update();
         Sm.Update();
@@ -84,7 +91,8 @@ public class Boss : Enemy
     public override void DisableEntity()
     {
         OnBossHasBeenKilled();
-
+        
+            
         HurtBox.enabled = false;
         MainCollider.enabled = false;
         enabled = false;
@@ -125,6 +133,8 @@ public class Boss : Enemy
 
             if (_life <= 0)
             {
+                Destroy(doorLeft);
+                Destroy(doorRight);
                 //Matamos al Jefe.
                 result.targetEliminated = true;
                 GameProgressTracker.BossEnemyKilled();
