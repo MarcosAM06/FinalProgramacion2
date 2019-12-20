@@ -15,6 +15,10 @@ public class Enemy : MonoBehaviour, IFighter<HitData, HitResult>
     [SerializeField] protected float _angle = 0;
     [SerializeField] protected LayerMask visibles = ~0;
 
+    [Header("Cooldowns & Timers")]
+    [SerializeField] protected float CriticalhitCooldownTime = 1f;
+    [HideInInspector] public bool CanGetCriticalHit = true;
+
     [Header("Combate")]
     public float AttackRange = 4;
 

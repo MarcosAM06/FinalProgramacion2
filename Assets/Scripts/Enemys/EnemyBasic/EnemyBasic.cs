@@ -3,16 +3,11 @@ using UnityEngine;
 
 public class EnemyBasic : Enemy
 {
-    public bool CanGetCriticalHit = true;
     public bool isAttacking = false;
 
-    [SerializeField] int EDamage = 0;
     [SerializeField] Collider HurtBox = null;
     [SerializeField] Collider HitBox = null;
     [SerializeField] Collider MainCollider = null;
-
-    [Header("Cooldowns & Timers")]
-    [SerializeField] float CriticalhitCooldownTime = 1f;
 
     public enum BE_Inputs
     {
@@ -95,6 +90,8 @@ public class EnemyBasic : Enemy
             Sm.Feed(evaluation);
     }
 
+    //=================================== Debugg Gizmos ==========================================
+
     protected override void OnDrawGizmosSelected()
     {
         base.OnDrawGizmosSelected();
@@ -139,7 +136,7 @@ public class EnemyBasic : Enemy
     {
         return new HitData()
         {
-            Damage = EDamage
+            Damage = _damage
         };
     }
 
