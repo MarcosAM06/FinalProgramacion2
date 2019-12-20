@@ -37,7 +37,7 @@ public class Bullet : MonoBehaviour
     {
         if (other.gameObject != _owner.gameObject)
         {
-            print(string.Format("Hitted target {0}", other.gameObject));
+            //print(string.Format("Hitted target {0}", other.gameObject));
             var target = other.GetComponentInParent<IFighter<HitData, HitResult>>();
 
             if (target != null)
