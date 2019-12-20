@@ -1,5 +1,4 @@
 ﻿using System.Linq;
-using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -66,7 +65,6 @@ public class Player : MonoBehaviour, IFighter<HitData,HitResult>
     private void Awake()
     {
         _hud = GetComponent<PlayerHUD>();
-        _hud.SwitchToShootButton();
         Health = _maxHealth;
         _rb = GetComponent<Rigidbody>();
         _anim = GetComponentInChildren<Animator>();
@@ -100,6 +98,7 @@ public class Player : MonoBehaviour, IFighter<HitData,HitResult>
     // Update is called once per frame
     void Update()
     {
+        Shader.SetGlobalVector("PointPosition", transform.position + Vector3.up * 2);
         GetCloserTarget();
         if (CurrentWeapon.InfiniteBullets)
         {
@@ -264,43 +263,6 @@ public class Player : MonoBehaviour, IFighter<HitData,HitResult>
         {
             foreach (var weapon in Weapons.Values)
                 weapon.IncreaseDamage(extraDamage);
-        }
-    }
-
-    //================================================ COLLISIONES ========================================================================
-
-    //Interacción con objetos.
-    private void OnTriggerEnter(Collider other)
-    {
-       
-        //Obtenemos una referencia a un objeto interactuable.
-        print("ENTRE EN EL TRIGGER");
-        _currentActivable = other.GetComponent<Actibable>();
-        if (_currentActivable)
-        {
-            _hud.SwitchToInteractButton();
-            other.GetComponent<Renderer>().material.color = Color.red;
-        }
-
-        if (other.gameObject.layer == LayerMask.NameToLayer("ExitLevel1") )
-        {
-            Game.LoadScene(sceneIndex.Lvl2);
-        }
-
-        if (other.gameObject.layer == LayerMask.NameToLayer("ExitLevel2"))
-        {
-            Game.LoadScene(sceneIndex.Lvl3);
-        }
-
-    }
-    private void OnTriggerExit(Collider other)
-    {
-        print("SALGO DEL TRIGGER");
-        if (_currentActivable)
-        {
-            _currentActivable = null;
-            _hud.SwitchToShootButton();
-            other.GetComponent<Renderer>().material.color = Color.yellow;
         }
     }
 
