@@ -23,6 +23,11 @@ public class GameProgressTracker : MonoBehaviour
         unlockedArchivements = Resources.Load<ArchivementData>("Archievements");
     }
 
+    public static ArchivementData GetUnlockedArchivements()
+    {
+        return Resources.Load<ArchivementData>("Archievements");
+    }
+
     public static void NotifyCompletedLevel(sceneIndex level)
     {
         if (instance.unlockedArchivements == null)
