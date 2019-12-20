@@ -256,7 +256,7 @@ public class Player : MonoBehaviour, IFighter<HitData,HitResult>
 
     public void AddBullets(WeaponType weapon, int bulletAmmounts)
     {
-        //Acá va el código para añadir balas segun el arma.
+        
     }
     public Weapon GetWeaponByType(WeaponType weaponType)
     {
