@@ -194,7 +194,15 @@ ModelImporter:
       mirror: 0
       bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
       curves: []
-      events: []
+      events:
+      - time: 1
+        functionName: HurtEnd
+        data: 
+        objectReferenceParameter: {fileID: 11500000, guid: 3fd217cf4d0798849b8250edd2d36a2e,
+          type: 3}
+        floatParameter: 0
+        intParameter: 0
+        messageOptions: 0
       transformMask: []
       maskType: 3
       maskSource: {instanceID: 0}

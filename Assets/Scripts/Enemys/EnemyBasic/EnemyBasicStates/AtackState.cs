@@ -1,44 +1,24 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 
 public class AtackState<T> : State<T>
 {
-    public EnemyBasic Enemy;
-    public Animator Enemybasic;
+    EnemyBasic _owner;
+    Animator Animator;
 
-
-    public AtackState( EnemyBasic enemy, Animator enemyBasicAnim)
+    public AtackState( EnemyBasic owner, Animator enemyBasicAnim)
     {
-        this.Enemybasic = enemyBasicAnim;
-        Enemy = enemy;
+        this.Animator = enemyBasicAnim;
+        _owner = owner;
     }
-
 
     public override void Enter()
     {
-        Debug.Log("Enemigo Atacando");
-
+        Animator.SetBool("IsAtacking", true);
+        _owner.isAttacking = true;
+        _owner.StopNavmeshNavigation();
     }
-
-
-
-    public override void Update()
+    public override void Exit()
     {
-        if (Enemy.isCollisioning == false)
-        {
-            Enemybasic.SetBool("IsWalking", true);
-            Enemybasic.SetBool("IsAtacking", false);
-            Enemy.m_SM.Feed(EnemyBasic.BE_Inputs.IsNotNear);
-
-        }
-        else
-        {
-            Enemybasic.SetBool("IsAtacking", true);
-        }
-
+        _owner.isAttacking = false;
     }
-
-
-
 }

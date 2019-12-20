@@ -194,7 +194,39 @@ ModelImporter:
       mirror: 0
       bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
       curves: []
-      events: []
+      events:
+      - time: 0
+        functionName: StartUp
+        data: 
+        objectReferenceParameter: {fileID: 11500000, guid: 3fd217cf4d0798849b8250edd2d36a2e,
+          type: 3}
+        floatParameter: 0
+        intParameter: 0
+        messageOptions: 0
+      - time: 0.3364486
+        functionName: Active
+        data: 
+        objectReferenceParameter: {fileID: 11500000, guid: 3fd217cf4d0798849b8250edd2d36a2e,
+          type: 3}
+        floatParameter: 0
+        intParameter: 0
+        messageOptions: 0
+      - time: 0.44298244
+        functionName: Recovery
+        data: 
+        objectReferenceParameter: {fileID: 11500000, guid: 3fd217cf4d0798849b8250edd2d36a2e,
+          type: 3}
+        floatParameter: 0
+        intParameter: 0
+        messageOptions: 0
+      - time: 1
+        functionName: EndAttackAnimation
+        data: 
+        objectReferenceParameter: {fileID: 11500000, guid: 3fd217cf4d0798849b8250edd2d36a2e,
+          type: 3}
+        floatParameter: 0
+        intParameter: 0
+        messageOptions: 0
       transformMask: []
       maskType: 3
       maskSource: {instanceID: 0}

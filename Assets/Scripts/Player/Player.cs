@@ -9,7 +9,6 @@ public class Player : MonoBehaviour, IFighter<HitData,HitResult>
     [Header("Inspector")]
     [SerializeField] FixedJoystick _joystick = null;
     [SerializeField] Transform _worldForward = null;
-    
 
     [Header("Enviroment Events")]
     [SerializeField] Actibable _currentActivable = null;
@@ -24,8 +23,6 @@ public class Player : MonoBehaviour, IFighter<HitData,HitResult>
 
     [SerializeField] RuntimeAnimatorController _pistolAnimations = null;
     [SerializeField] RuntimeAnimatorController _rifleAnimations = null;
-
-
 
     public int Health
     {
@@ -55,6 +52,13 @@ public class Player : MonoBehaviour, IFighter<HitData,HitResult>
     Vector3 _raycastOrigin = Vector3.zero;
     Vector3 hitPoint = Vector3.zero;
 
+    public bool lockInput;
+
+    public bool IsHurted
+    {
+        get;
+        set;
+    }
     public bool IsAlive => _health > 0;
 
     public bool ShootPhase { get; private set; }
@@ -97,20 +101,34 @@ public class Player : MonoBehaviour, IFighter<HitData,HitResult>
     void Update()
     {
         GetCloserTarget();
-        if (!CurrentWeapon.shootPhase)
+        if (CurrentWeapon.InfiniteBullets)
         {
-            if (!CurrentWeapon.isReloading)
-            {
-                if (_joystick.Horizontal != 0 || _joystick.Vertical != 0)
-                    MovePlayer(_joystick.Horizontal, _joystick.Vertical);
-                else StopPlayerMovement();
-                RotatePlayer();
-            }
+            _hud._AmmoText.text = "Infinite";
+            _hud._magazineText.text = "Infinite";
         }
         else
         {
-            StopPlayerMovement();
-            RotatePlayerTowardsCloserTarget();
+            _hud._AmmoText.text = string.Format("{0} / {1}", CurrentWeapon.Magazine, CurrentWeapon.AmmoCapacity);
+            _hud._magazineText.text = CurrentWeapon.backPack.ToString();
+        }
+
+        if (!lockInput)
+        {
+            if (!CurrentWeapon.shootPhase)
+            {
+                if (!CurrentWeapon.isReloading)
+                {
+                    if (_joystick.Horizontal != 0 || _joystick.Vertical != 0)
+                        MovePlayer(_joystick.Horizontal, _joystick.Vertical);
+                    else StopPlayerMovement();
+                    RotatePlayer();
+                }
+            }
+            else
+            {
+                StopPlayerMovement();
+                RotatePlayerTowardsCloserTarget();
+            } 
         }
     }
 
@@ -209,7 +227,12 @@ public class Player : MonoBehaviour, IFighter<HitData,HitResult>
     {
         CurrentWeapon.StopShooting();
     }
-
+    public void Die()
+    {
+        _anim.SetBool("IsDying", true);
+        _hud.HideControls();
+        lockInput = true;
+    }
     //================================================ BUFFS ==============================================================================
 
     public void AddBullets(WeaponType weapon, int bulletAmmounts)
@@ -294,6 +317,8 @@ public class Player : MonoBehaviour, IFighter<HitData,HitResult>
             Health -= hitData.Damage;
 
             result.Conected = true;
+
+            if (Health <= 0) Die();
         }
 
         return result;

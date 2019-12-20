@@ -29,8 +29,4 @@ public static class Game
     {
         Application.Quit();
     }
-    
-
-
-
 }

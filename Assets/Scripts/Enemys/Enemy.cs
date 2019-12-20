@@ -14,6 +14,11 @@ public class Enemy : MonoBehaviour, IFighter<HitData, HitResult>
     [SerializeField] protected float angle = 0;
     [SerializeField] protected LayerMask visibles = ~0;
 
+    [Header("Combate")]
+    public float AttackRange = 4;
+
+    public bool LookTowardsPlayer { get; set; } = false;
+
     //Componentes de Unity.
     protected Transform _target;
     protected Animator _anims;
@@ -28,13 +33,43 @@ public class Enemy : MonoBehaviour, IFighter<HitData, HitResult>
         _anims = GetComponent<Animator>();
         _agent = GetComponent<NavMeshAgent>();
     }
+    protected virtual void Update()
+    {
+        if (LookTowardsPlayer && _target != null)
+        {
+            Vector3 lookDirection = (_target.position - transform.position);
+            lookDirection.y = 0;
+            transform.forward = lookDirection.normalized;
+        }
+    }
+
 
     //=================================== Custom Funcs ===========================================
 
     /// <summary>
+    /// Callback que se llama cuando el Enemigo entra en la fase de Recovery.
+    /// Usa esto para chequear condiciones para encadenar un nuevo ataque o pasar a otro estado.
+    /// </summary>
+    public virtual void EvaluateTarget() { }
+    /// <summary>
+    /// Callback que se llama cuando el Enemigo termina su animación de ataque.
+    /// Usa esto para ejecutar la acción correspondiente de acuerdo a lo evaluado.
+    /// </summary>
+    public virtual void ExecuteEvaluateAction() { }
+    /// <summary>
     /// Deshabilita esta unidad, pero no lo destruye del mundo.
     /// </summary>
     public virtual void DisableEntity() { enabled = false; }
+
+    public virtual void StopNavmeshNavigation()
+    {
+        _agent.isStopped = true;
+    }
+    public virtual void SetNavmeshDestination(Vector3 location)
+    {
+        if (_agent.isStopped) _agent.isStopped = false;
+        _agent.SetDestination(location);
+    }
 
     //=================================== Line of Sight ==========================================
 
@@ -64,4 +99,13 @@ public class Enemy : MonoBehaviour, IFighter<HitData, HitResult>
     { return new HitResult() { Conected = false, targetEliminated = false }; }
 
     public virtual void OnHiConnected(HitResult hitResult) { }
+
+    //=================================== Debugg Gizmos ==========================================
+
+    protected virtual void OnDrawGizmosSelected()
+    {
+        Gizmos.color = Color.red;
+        Gizmos.matrix = Matrix4x4.Scale(new Vector3(1, 0, 1));
+        Gizmos.DrawWireSphere(transform.position, AttackRange);
+    }
 }
