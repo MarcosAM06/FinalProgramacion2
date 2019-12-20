@@ -9,8 +9,17 @@ public class Player : MonoBehaviour, IFighter<HitData,HitResult>
     [SerializeField] FixedJoystick _joystick = null;
     [SerializeField] Transform _worldForward = null;
 
+    [Header("Sonido")]
+    [SerializeField] AudioSource AS_characterSounds;
+    [SerializeField] AudioSource AS_GunSounds;
+    [SerializeField] AudioClip S_PistolShoot;
+    [SerializeField] AudioClip S_PistolReload;
+    [SerializeField] AudioClip S_RifleShoot;
+    [SerializeField] AudioClip S_RifleReload;
+    [SerializeField] AudioClip S_WithoutAmmo;
+    [SerializeField] AudioClip S_GetHurt;
+
     [Header("Enviroment Events")]
-    [SerializeField] Actibable _currentActivable = null;
     [SerializeField] LayerMask _targeteables = 0;
     [SerializeField] float _targetDetectionRange = 10f;
     [SerializeField] IFighter<HitData, HitResult> _target = null;
@@ -22,11 +31,6 @@ public class Player : MonoBehaviour, IFighter<HitData,HitResult>
 
     [SerializeField] RuntimeAnimatorController _pistolAnimations = null;
     [SerializeField] RuntimeAnimatorController _rifleAnimations = null;
-
-    public AudioClip ShotPistol;
-    public AudioClip Hurt;
-    public AudioClip Reload;
-
 
     public int Health
     {
@@ -84,6 +88,17 @@ public class Player : MonoBehaviour, IFighter<HitData,HitResult>
             weaponComp.StartReloadAnimation += () => _anim.SetBool("IsReloading", true);
             weaponComp.EndReloadAnimation += () => _anim.SetBool("IsReloading", false);
             Weapons.Add(weaponComp.WeaponType, weaponComp);
+
+            if (weaponComp.WeaponType == WeaponType.Pistol)
+            {
+                weaponComp.OnShoot += () => { AS_GunSounds.PlayOneShot(S_PistolShoot); };
+                weaponComp.OnReload += () => { AS_GunSounds.PlayOneShot(S_PistolReload); };
+            }
+            else
+            {
+                weaponComp.OnShoot += () => { AS_GunSounds.PlayOneShot(S_RifleShoot); };
+                weaponComp.OnReload += () => { AS_GunSounds.PlayOneShot(S_RifleReload); };
+            }
         }
         SetPistol();
     }
@@ -214,18 +229,16 @@ public class Player : MonoBehaviour, IFighter<HitData,HitResult>
     //Hoockeamos esto x UI.
     public void Shoot()
     {
-
         if (CurrentWeapon.canShoot)
         {
             CurrentWeapon.StartShooting();
-          //  Audiomanager.instance.Shot(ShotPistol);
-
             if (_target != null) RotatePlayerTowardsCloserTarget();
         }
         else
         {
             print("No puedo disparar me quede sin balas");
             //Activo un sonido de no-balas.
+            AS_GunSounds.PlayOneShot(S_WithoutAmmo);
         }
     }
     public void StopShoot()
@@ -284,10 +297,10 @@ public class Player : MonoBehaviour, IFighter<HitData,HitResult>
         if (hitData.Damage > 0)
         {
             Health -= hitData.Damage;
-
             result.Conected = true;
 
             if (Health <= 0) Die();
+            else AS_characterSounds.PlayOneShot(S_GetHurt);
         }
 
         return result;
