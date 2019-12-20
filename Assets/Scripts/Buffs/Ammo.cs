@@ -6,9 +6,12 @@ public class Ammo : MonoBehaviour
     [SerializeField] WeaponType bulletType = WeaponType.Pistol;
     [SerializeField] int Ammount = 15;
     [SerializeField] float _lifeTime = 15f;
+    [SerializeField] bool permanent = true;
 
     private void Update()
     {
+        if (permanent) return;
+
         _lifeTime -= Time.deltaTime;
         if (_lifeTime < 0) Destroy(gameObject);
     }
@@ -19,7 +22,6 @@ public class Ammo : MonoBehaviour
         if (player)
         {
             player.AddBullets(bulletType, Ammount);
-
             Destroy(gameObject);
         }
     }
