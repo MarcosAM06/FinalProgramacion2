@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
+using TMPro;
 
 public class CanvasController : MonoBehaviour {
 
@@ -10,10 +11,17 @@ public class CanvasController : MonoBehaviour {
 
 
     [SerializeField] GameObject MainMenuCanvas= null;
+
+    [Header("Archivements")]
     [SerializeField] GameObject AchievmentCanvas = null;
+    [SerializeField] TMP_Text Arch1;
+    [SerializeField] TMP_Text Arch2;
+    [SerializeField] TMP_Text Arch3;
+    [SerializeField] TMP_Text Arch4;
+    [SerializeField] TMP_Text Arch5;
 
 
-    //Menu de pausa
+    [Header("Menú de Pausa")]
     [SerializeField] GameObject PauseMenu = null;
     [SerializeField] GameObject GameOptions = null;
     [SerializeField] GameObject FixedJoystick = null;
@@ -51,6 +59,23 @@ public class CanvasController : MonoBehaviour {
         MainMenuCanvas.SetActive(false);
         AchievmentCanvas.SetActive(true);
 
+        GameProgressTracker.instance.LoadArchivementData();
+        var archivements = GameProgressTracker.GetUnlockedArchivements();
+
+        if (archivements.TotalEnemigosSimplesAsesinados > 0 ||archivements.TotalEnemigosRangoAsesinados > 0)
+            Arch1.color = Color.green;
+
+        if (archivements.PrimeraMuerte)
+            Arch2.color = Color.green;
+
+        if (archivements.EnemigoSimplesAsesinados || archivements.EnemigosRangoAsesinados)
+            Arch3.color = Color.green;
+
+        if (archivements.Nivel1Completado)
+            Arch4.color = Color.green;
+
+        if (archivements.JuegoCompletado)
+            Arch4.color = Color.green;
     }
 
     public void Return()
@@ -59,14 +84,11 @@ public class CanvasController : MonoBehaviour {
         AchievmentCanvas.SetActive(false);
     }
 
-    //PANTALLA PERDIDA
-    public void TryAgain()
-    {
+    ////PANTALLA PERDIDA
+    //public void TryAgain()
+    //{
             
-    }
-
-
-
+    //}
 
     //MENU DE PAUSA
     public void Continue()

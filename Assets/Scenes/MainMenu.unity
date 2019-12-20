@@ -519,6 +519,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   MainMenuCanvas: {fileID: 268352196}
   AchievmentCanvas: {fileID: 1340873488}
+  Arch1: {fileID: 271823664}
+  Arch2: {fileID: 6244320}
+  Arch3: {fileID: 914826360}
+  Arch4: {fileID: 641836998}
+  Arch5: {fileID: 1622225947}
   PauseMenu: {fileID: 0}
   GameOptions: {fileID: 0}
   FixedJoystick: {fileID: 0}
