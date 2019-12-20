@@ -1195,6 +1195,11 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 9051283478080333855, guid: 939986e4826bef5468dd23bf6d07a360,
+        type: 3}
+      propertyPath: isPlayableScene
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 939986e4826bef5468dd23bf6d07a360, type: 3}
 --- !u!1 &590754138
@@ -2234,6 +2239,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   MainMenuCanvas: {fileID: 0}
   AchievmentCanvas: {fileID: 0}
+  Arch1: {fileID: 0}
+  Arch2: {fileID: 0}
+  Arch3: {fileID: 0}
+  Arch4: {fileID: 0}
+  Arch5: {fileID: 0}
   PauseMenu: {fileID: 0}
   GameOptions: {fileID: 0}
   FixedJoystick: {fileID: 0}
