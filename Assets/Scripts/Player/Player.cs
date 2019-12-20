@@ -230,6 +230,7 @@ public class Player : MonoBehaviour, IFighter<HitData,HitResult>
     {
         _anim.SetBool("IsDying", true);
         _hud.HideControls();
+        GameProgressTracker.NotifyPlayerDied();
         lockInput = true;
     }
     //================================================ BUFFS ==============================================================================

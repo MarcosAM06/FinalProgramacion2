@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 2408510444271088381}
   - component: {fileID: 2408510444271088370}
   - component: {fileID: 2408510444271088371}
-  m_Layer: 10
+  m_Layer: 0
   m_Name: LevelExit
   m_TagString: Untagged
   m_Icon: {fileID: 0}
