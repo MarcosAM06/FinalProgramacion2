@@ -1,34 +1,24 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 
 public class TakeHardDamageState<T> : State<T>
 {
-    public Animator Enemyhard;
-    public EnemyHard Enemy;
+    public Animator anims;
+    public EnemyHard _owner;
 
     public TakeHardDamageState(EnemyHard enemyHard, Animator enemyHardAnim)
     {
-        this.Enemyhard = enemyHardAnim;
-        Enemy = enemyHard;
+        anims = enemyHardAnim;
+        _owner = enemyHard;
     }
 
     public override void Enter()
     {
-        //Debug.Log("Enemigo recibe daño");
+        Debug.Log("Enemigo recibe daño");
+        anims.SetBool("ReceiveDamage", true);
+        _owner.CanGetCriticalHit = false;
     }
-
-    public override void Update()
+    public override void Exit()
     {
-        if (Enemy.isGettingDamage == true)
-        {
-            Enemyhard.SetBool("GetHit", true);
-        }
-
-        else if (Enemy.isGettingDamage == false)
-        {
-            Enemyhard.SetBool("GetHit", false);
-            Enemy.m_SM.Feed(EnemyHard.BE2_Inputs.NoTakingDamage);
-        }
+        anims.SetBool("ReceiveDamage", false);
     }
 }

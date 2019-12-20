@@ -1,6 +1,4 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 
 [AddComponentMenu("EventListeners/Enemies/Basic", 1)]
 public class EB_EventListener : MonoBehaviour

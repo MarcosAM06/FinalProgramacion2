@@ -59,11 +59,10 @@ public class EnemyBasic : Enemy
 
     protected override void Update()
     {
-        if (life <= 0)
+        if (_life <= 0)
             Sm.Feed(BE_Inputs.IsDead);
 
         base.Update();
-
         Sm.Update();
 
         if (IsInSight(_target))
@@ -103,27 +102,28 @@ public class EnemyBasic : Enemy
         var position = transform.position;
 
         Gizmos.color = Color.white;
-        Gizmos.DrawWireSphere(position, range);
+        Gizmos.DrawWireSphere(position, _range);
 
         Gizmos.color = Color.yellow;
-        Gizmos.DrawLine(position, position + Quaternion.Euler(0, angle / 2, 0) * transform.forward * range);
-        Gizmos.DrawLine(position, position + Quaternion.Euler(0, -angle / 2, 0) * transform.forward * range);
+        Gizmos.DrawLine(position, position + Quaternion.Euler(0, _angle / 2, 0) * transform.forward * _range);
+        Gizmos.DrawLine(position, position + Quaternion.Euler(0, -_angle / 2, 0) * transform.forward * _range);
 
         if (_target)
             Gizmos.DrawLine(position, _target.position);
     }
 
-    //EnemyBasic recibe daño
+    //=================================== Sistema de Daño ========================================
+
     public override HitResult Hit(HitData hitData)
     {
         HitResult result = new HitResult();
 
         if (hitData.Damage > 0)
         {
-            life -= hitData.Damage;
+            _life -= hitData.Damage;
             result.Conected = true;
 
-            if (life <= 0)
+            if (_life <= 0)
             {
                 result.targetEliminated = true;
                 Sm.Feed(BE_Inputs.IsDead);

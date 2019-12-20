@@ -1,15 +1,13 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 
 public class IddleHardState<T> : State<T>
 {
-    public Animator Enemyhard;
-    public EnemyHard Enemy;
+    public Animator Anims;
+    public EnemyHard _owner;
 
     public IddleHardState(EnemyHard enemyHard, Animator enemyHardAnim)
     {
-        this.Enemyhard = enemyHardAnim;
-        Enemy = enemyHard;
+        Anims = enemyHardAnim;
+        _owner = enemyHard;
     }
 }
