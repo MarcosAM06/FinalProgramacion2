@@ -12,6 +12,7 @@ public class CanvasController : MonoBehaviour {
     [SerializeField] GameObject MainMenuCanvas= null;
     [SerializeField] GameObject AchievmentCanvas = null;
 
+
     //Menu de pausa
     [SerializeField] GameObject PauseMenu = null;
     [SerializeField] GameObject GameOptions = null;
