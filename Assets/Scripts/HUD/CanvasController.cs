@@ -58,6 +58,15 @@ public class CanvasController : MonoBehaviour {
         AchievmentCanvas.SetActive(false);
     }
 
+    //PANTALLA PERDIDA
+    public void TryAgain()
+    {
+            
+    }
+
+
+
+
     //MENU DE PAUSA
     public void Continue()
     {
