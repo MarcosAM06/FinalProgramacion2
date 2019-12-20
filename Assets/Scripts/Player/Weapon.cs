@@ -106,6 +106,12 @@ public class Weapon : MonoBehaviour
 
         if (shootPhase) StartShootAnimation();
     }
+    public void LoadBulletInfo(int bulletsInMagazine, int bulletsInBackPak, bool infiniteBullets = false)
+    {
+        _magazine = bulletsInMagazine;
+        _backPack = bulletsInMagazine;
+        InfiniteBullets = infiniteBullets;
+    }
     public void IncreaseDamage(int ammount)
     {
         if (ammount > 0)
