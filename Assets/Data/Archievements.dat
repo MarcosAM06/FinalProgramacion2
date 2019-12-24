@@ -1,0 +1,12 @@
+{
+    "Nivel1Completado": false,
+    "Nivel2Completado": false,
+    "JuegoCompletado": false,
+    "BossAsesinado": false,
+    "EnemigoSimplesAsesinados": false,
+    "EnemigosRangoAsesinados": false,
+    "TotalEnemigosSimplesAsesinados": 0,
+    "TotalEnemigosRangoAsesinados": 0,
+    "TotalBossesEliminados": 0,
+    "PrimeraMuerte": false
+}

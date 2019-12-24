@@ -44,6 +44,6 @@ public class P_AnimEventListener : MonoBehaviour
     /// </summary>
     void Died()
     {
-        Game.LoadScene(sceneIndex.Defeat);
+        Game.LoadScene(SceneIndex.Defeat);
     }
 }

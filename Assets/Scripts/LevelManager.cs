@@ -1,12 +1,12 @@
 ﻿using UnityEngine;
-using UnityEditor;
+using Core.Serialization;
 
 public class LevelManager : MonoBehaviour
 {
     public static LevelManager instance;
 
-    public sceneIndex CurrentScene;
-    public string saveGamePath = "SaveGame";
+    public SceneIndex CurrentScene;
+    public string saveGamePath = "SaveGamePath";
     public bool isPlayableScene = true;
 
     Player player;
@@ -22,7 +22,7 @@ public class LevelManager : MonoBehaviour
         {
             CheckPointData lastData = LoadGame();
 
-            if (lastData.playerSavedGame)
+            if (lastData != null && lastData.playerSavedGame)
             {
                 player = FindObjectOfType<Player>();
                 player.GetWeaponByType(WeaponType.AssaultRifle);
@@ -40,14 +40,17 @@ public class LevelManager : MonoBehaviour
 
     public CheckPointData LoadGame()
     {
-        return Resources.Load<CheckPointData>(saveGamePath);
+        return FullSerialization.Deserialize<CheckPointData>(saveGamePath, false);
     }
 
     public void SaveGame()
     {
+        CheckPointData lastData = LoadGame();
+        if (lastData == null)
+            lastData = new CheckPointData();
+
         if (isPlayableScene)
         {
-            CheckPointData lastData = LoadGame();
             player = FindObjectOfType<Player>();
             lastData.healthAmmount = player.Health;
 
@@ -58,18 +61,24 @@ public class LevelManager : MonoBehaviour
             lastData.hasInfiniteBullets = rifle.InfiniteBullets;
 
             lastData.playerSavedGame = true;
+
+            lastData.Serialize(saveGamePath, false);
         }
     }
 
     public void ClearGameData()
     {
         CheckPointData data = LoadGame();
+        if (data == null)
+            data = new CheckPointData();
 
         data.playerSavedGame = false;
-        data.lastScenePlayed = sceneIndex.Lvl1;
+        data.lastScenePlayed = SceneIndex.Lvl1;
         data.BulletsInMagazine = 0;
         data.BulletsInBackPack = 0;
         data.healthAmmount = 0;
         data.hasInfiniteBullets = false;
+
+        data.Serialize(saveGamePath, false);
     }
 }

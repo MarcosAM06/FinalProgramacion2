@@ -1,10 +1,11 @@
-﻿using UnityEngine;
+﻿using System;
+using UnityEngine;
 
-[CreateAssetMenu(fileName = "SaveGame", menuName = "CoreData/SaveGame", order = 3)]
-public class CheckPointData : ScriptableObject
+[Serializable]
+public class CheckPointData
 {
     public bool playerSavedGame = false;
-    public sceneIndex lastScenePlayed = sceneIndex.Lvl1;
+    public SceneIndex lastScenePlayed = SceneIndex.Lvl1;
     public int healthAmmount;
 
     [Header("Rifle")]

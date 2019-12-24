@@ -1,8 +1,9 @@
-﻿using UnityEngine;
+﻿using System;
+using UnityEngine;
 using UnityEngine.SceneManagement;
 
-
-public enum sceneIndex : uint
+[Serializable]
+public enum SceneIndex : uint
 {
     MainMenu = 0,
     Credits,
@@ -20,7 +21,7 @@ public static class Game
     {
         SceneManager.LoadScene(sceneIndex);
     }
-    public static void LoadScene(sceneIndex sceneIndex)
+    public static void LoadScene(SceneIndex sceneIndex)
     {
         SceneManager.LoadScene((int)sceneIndex);
     }

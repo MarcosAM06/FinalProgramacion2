@@ -1,0 +1,8 @@
+{
+    "playerSavedGame": false,
+    "lastScenePlayed": 1,
+    "healthAmmount": 0,
+    "BulletsInMagazine": 0,
+    "BulletsInBackPack": 0,
+    "hasInfiniteBullets": false
+}

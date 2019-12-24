@@ -1,117 +1,114 @@
-﻿using System.Collections;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Analytics;
+using Core.Serialization;
 
 public class GameProgressTracker : MonoBehaviour
 {
     public static GameProgressTracker instance;
-
-    public const string DataPath = "Archievements";
-    public ArchivementData unlockedArchivements;
+    public const string DataPath = "Assets/Data/Archievements.dat";
 
     private void Awake()
     {
         if (!instance) instance = this;
         else Destroy(this);
-
-        LoadArchivementData();
-    }
-
-    public void LoadArchivementData()
-    {
-        unlockedArchivements = Resources.Load<ArchivementData>("Archievements");
     }
 
     public static ArchivementData GetUnlockedArchivements()
     {
-        return Resources.Load<ArchivementData>("Archievements");
+        var LoadedData = FullSerialization.Deserialize<ArchivementData>(DataPath, false);
+        if (LoadedData == null) return new ArchivementData();
+        return LoadedData;
     }
 
-    public static void NotifyCompletedLevel(sceneIndex level)
+    public static void NotifyCompletedLevel(SceneIndex level)
     {
-        if (instance.unlockedArchivements == null)
-            instance.LoadArchivementData();
+        ArchivementData unlockedArchivements = GetUnlockedArchivements();
 
         switch (level)
         {
-            case sceneIndex.Lvl1:
-                instance.unlockedArchivements.Nivel1Completado = true;
+            case SceneIndex.Lvl1:
+                unlockedArchivements.Nivel1Completado = true;
                 Analytics.CustomEvent("Level1Finalized");
                 break;
-            case sceneIndex.Lvl2:
-                instance.unlockedArchivements.Nivel2Completado = true;
+            case SceneIndex.Lvl2:
+                unlockedArchivements.Nivel2Completado = true;
                 Analytics.CustomEvent("Level2Finalized");
                 break;
-            case sceneIndex.Lvl3:
-                instance.unlockedArchivements.JuegoCompletado = true;
+            case SceneIndex.Lvl3:
+                unlockedArchivements.JuegoCompletado = true;
                 Analytics.CustomEvent("GameCompleted");
                 break;
             default:
                 break;
         }
+
+        unlockedArchivements.Serialize(DataPath, false);
     }
 
     public static void NofitySimpleEnemyKilled()
     {
-        if (instance.unlockedArchivements == null)
-            instance.LoadArchivementData();
+        ArchivementData unlockedArchivements = GetUnlockedArchivements();
 
-        instance.unlockedArchivements.TotalEnemigosSimplesAsesinados++;
+        unlockedArchivements.TotalEnemigosSimplesAsesinados++;
 
-        if (instance.unlockedArchivements.TotalEnemigosSimplesAsesinados == 5)
-            instance.unlockedArchivements.EnemigoSimplesAsesinados = true;
+        if (unlockedArchivements.TotalEnemigosSimplesAsesinados == 5)
+            unlockedArchivements.EnemigoSimplesAsesinados = true;
 
         //LLamamos a los eventos de Analitics.
         AnalyticsEvent.Custom("SimpleEnemyiKilled", new Dictionary<string, object>
         {
-            { "Total killed", instance.unlockedArchivements.EnemigoSimplesAsesinados }
+            { "Total killed", unlockedArchivements.EnemigoSimplesAsesinados }
         });
+
+        unlockedArchivements.Serialize(DataPath, false);
     }
 
     public static void NotifyRangeEnemyKilled()
     {
-        if (instance.unlockedArchivements == null)
-            instance.LoadArchivementData();
+        ArchivementData unlockedArchivements = GetUnlockedArchivements();
 
-        instance.unlockedArchivements.TotalEnemigosRangoAsesinados++;
+        unlockedArchivements.TotalEnemigosRangoAsesinados++;
 
-        if (instance.unlockedArchivements.TotalEnemigosRangoAsesinados == 5)
-            instance.unlockedArchivements.EnemigosRangoAsesinados = true;
+        if (unlockedArchivements.TotalEnemigosRangoAsesinados == 5)
+            unlockedArchivements.EnemigosRangoAsesinados = true;
 
         //LLamamos a Analitics again.
         AnalyticsEvent.Custom("RangeEnemyKilled", new Dictionary<string, object>
         {
-            { "Total killed", instance.unlockedArchivements.EnemigosRangoAsesinados }
+            { "Total killed", unlockedArchivements.EnemigosRangoAsesinados }
         });
+
+        unlockedArchivements.Serialize(DataPath, false);
     }
 
     public static void NotifyPlayerDied()
     {
-        if (instance.unlockedArchivements == null)
-            instance.LoadArchivementData();
+        ArchivementData unlockedArchivements = GetUnlockedArchivements();
 
-        if (!instance.unlockedArchivements.PrimeraMuerte)
+        if (!unlockedArchivements.PrimeraMuerte)
         {
-            instance.unlockedArchivements.PrimeraMuerte = true;
+            unlockedArchivements.PrimeraMuerte = true;
             
             //Notificamos a Analitics.
             Analytics.CustomEvent("PlayerFirstDeath");
         }
+
+        unlockedArchivements.Serialize(DataPath, false);
     }
 
     public static void BossEnemyKilled()
     {
-        if (instance.unlockedArchivements == null)
-            instance.LoadArchivementData();
+        ArchivementData unlockedArchivements = GetUnlockedArchivements();
 
-        if (!instance.unlockedArchivements.BossAsesinado)
+        if (!unlockedArchivements.BossAsesinado)
         {
-            instance.unlockedArchivements.BossAsesinado = true;
+            unlockedArchivements.BossAsesinado = true;
             //Notificación.
             Analytics.CustomEvent("BossKilled");
         }
 
-        instance.unlockedArchivements.TotalBossesEliminados++;
+        unlockedArchivements.TotalBossesEliminados++;
+        unlockedArchivements.Serialize(DataPath, false);
     }
 }
