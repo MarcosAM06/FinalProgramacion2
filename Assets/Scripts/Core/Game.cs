@@ -5,13 +5,13 @@ using UnityEngine.SceneManagement;
 public enum sceneIndex : uint
 {
     MainMenu = 0,
-    Credits,
+    Credits =5,
     Introduction,
-    Lvl1,
-    Lvl2,
-    Lvl3,
-    Victory,
-    Defeat
+    Lvl1= 1,
+    Lvl2 = 2,
+    Lvl3 = 3,
+    Victory = 4,
+    Defeat= 6
 }
 
 public static class Game
