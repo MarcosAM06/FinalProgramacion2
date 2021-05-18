@@ -60,7 +60,7 @@ GameObject:
   - component: {fileID: 7988663252952000522}
   - component: {fileID: 3273671201943979971}
   m_Layer: 27
-  m_Name: Enemigo2
+  m_Name: Enemy2
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -151,8 +151,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _life: 40
-  _damage: 10
-  _range: 13
+  _damage: 40
+  _range: 8
   _angle: 130
   visibles:
     serializedVersion: 2

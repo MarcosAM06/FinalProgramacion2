@@ -42,10 +42,7 @@ public class CanvasController : MonoBehaviour {
     }
     void Update()
     {
-        if (Input.GetKeyDown(KeyCode.Escape))
-        {
-            ActivatePause();
-        }
+       
     }
     //PANTALLA DE MENU
     public void StartGame()
