@@ -92,7 +92,10 @@ public class Weapon : MonoBehaviour
         {
             isReloading = true;
             StartReloadAnimation();
+           
         }
+        
+        
     }
     public void OnEndReloading()
     {

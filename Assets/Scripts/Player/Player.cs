@@ -153,12 +153,17 @@ public class Player : MonoBehaviour, IFighter<HitData,HitResult>
         if (Input.GetKeyDown(KeyCode.Space))
         {
             Shoot();
-            
+           
+            _movementSpeed = 0;
+
+
         }
 
         if (Input.GetKeyUp(KeyCode.Space))
         {
             StopShoot();
+            _movementSpeed = 5;
+
         }
 
         var horizontal = Input.GetAxis("Horizontal");
